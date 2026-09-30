@@ -467,6 +467,7 @@ dependencies = [
     { name = "numpy" },
     { name = "pandas" },
     { name = "pillow" },
+    { name = "tqdm" },
 ]
 
 [package.metadata]
@@ -475,6 +476,7 @@ requires-dist = [
     { name = "numpy", specifier = ">=2.5.3" },
     { name = "pandas", specifier = ">=3.0.6" },
     { name = "pillow", specifier = ">=12.3.0" },
+    { name = "tqdm", specifier = ">=4.70.1" },
 ]
 
 [[package]]

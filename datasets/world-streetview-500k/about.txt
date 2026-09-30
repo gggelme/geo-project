@@ -7,3 +7,146 @@ Imagen reducida y me da la sensación que también tiene reducida la calidad (cr
 200 gigaaaaaaaaaaaas
 
 Tiene latitud y longitud y elevación (este ultimo no se como podríamos saberlo en testing)
+
+
+Analisis por continente (train)
+
+=============America del sur====
+🇦🇷 AR — Argentina: 29.668
+🇧🇴 BO — Bolivia: 1.156
+🇧🇷 BR — Brasil: 136.920
+🇨🇱 CL — Chile: 10.944
+🇨🇴 CO — Colombia: 10.460
+🇪🇨 EC — Ecuador: 2.756
+🇵🇾 PY — Paraguay: 1.912
+🇵🇪 PE — Perú: 9.000
+🇺🇾 UY — Uruguay: 3.000
+
+
+=======America central y caribe ==========
+🇨🇷 CR — Costa Rica: 1.592
+🇬🇹 GT — Guatemala: 900
+🇵🇦 PA — Panamá: 948
+
+🇩🇴 DO — República Dominicana: 112
+🇵🇷 PR — Puerto Rico: 860
+🇦🇼 CW — Curazao: 48
+🇻🇮 VI — Islas Vírgenes de EE. UU.: 44
+
+
+=======America del norte ==================
+🇨🇦 CA — Canadá: 63.792
+🇲🇽 MX — México: 45.260
+🇺🇸 US — Estados Unidos: 476.840
+🇧🇲 BM — Bermudas: 8
+
+
+=============Europa===========================
+🇦🇱 AL — Albania: 624
+🇦🇩 AD — Andorra: 24
+🇦🇹 AT — Austria: 9.096
+🇧🇪 BE — Bélgica: 5.604
+🇧🇦 BA — Bosnia y Herzegovina: 2.720
+🇧🇬 BG — Bulgaria: 6.656
+🇨🇾 CY — Chipre: 584
+🇭🇷 HR — Croacia: 5.164
+🇨🇿 CZ — Chequia: 10.740
+🇩🇰 DK — Dinamarca: 6.868
+🇪🇪 EE — Estonia: 4.912
+🇫🇮 FI — Finlandia: 19.732
+🇫🇴 FO — Islas Feroe: 116
+🇫🇷 FR — Francia: 86.208
+🇩🇪 DE — Alemania: 36.440
+🇬🇷 GR — Grecia: 11.344
+🇬🇱 GL — Groenlandia: 28
+🇭🇺 HU — Hungría: 7.612
+🇮🇸 IS — Islandia: 1.712
+🇮🇪 IE — Irlanda: 11.136
+🇮🇲 IM — Isla de Man: 92
+🇮🇹 IT — Italia: 41.652
+🇽🇰 — Kosovo: (no aparece en tu lista)
+🇱🇻 LV — Letonia: 5.084
+🇱🇮 LI — Liechtenstein: 16
+🇱🇹 LT — Lituania: 5.404
+🇱🇺 LU — Luxemburgo: 500
+🇲🇹 MT — Malta: 60
+🇲🇪 ME — Montenegro: 440
+🇳🇱 NL — Países Bajos: 6.252
+🇲🇰 MK — Macedonia del Norte: 276
+🇳🇴 NO — Noruega: 12.704
+🇵🇱 PL — Polonia: 37.336
+🇵🇹 PT — Portugal: 10.516
+🇷🇴 RO — Rumania: 12.728
+🇷🇺 RU — Rusia: 55.884
+🇸🇲 SM — San Marino: 4
+🇷🇸 RS — Serbia: 1.396
+🇸🇰 SK — Eslovaquia: 4.092
+🇸🇮 SI — Eslovenia: 2.868
+🇪🇸 ES — España: 41.492
+🇸🇪 SE — Suecia: 22.944
+🇨🇭 CH — Suiza: 3.712
+🇹🇷 TR — Turquía: 32.672
+🇺🇦 UA — Ucrania: 5.072
+🇬🇧 GB — Reino Unido: 30.740
+🇦🇽 AX — Islas Åland: 108
+🇯🇪 JE — Jersey: 28
+
+=============Africa================
+🇧🇼 BW — Botsuana: 1.984
+🇸🇿 SZ — Esuatini: 292
+🇬🇭 GH — Ghana: 1.228
+🇰🇪 KE — Kenia: 7.696
+🇱🇸 LS — Lesoto: 440
+🇳🇦 NA — Namibia: 2.860
+🇳🇬 NG — Nigeria: 8.364
+🇷🇼 RW — Ruanda: 560
+🇸🇳 SN — Senegal: 1.868
+🇿🇦 ZA — Sudáfrica: 23.672
+🇹🇳 TN — Túnez: 444
+🇺🇬 UG — Uganda: 172
+🇷🇪 RE — Reunión: 68
+🇸🇹 ST — Santo Tomé y Príncipe: 36
+
+==============Asia=====================
+🇦🇪 AE — Emiratos Árabes Unidos: 780
+🇧🇩 BD — Bangladés: 12.492
+🇧🇹 BT — Bután: 196
+🇰🇭 KH — Camboya: 7.244
+🇭🇰 HK — Hong Kong: 108
+🇮🇳 IN — India: 266.860
+🇮🇩 ID — Indonesia: 48.156
+🇮🇱 IL — Israel: 716
+🇯🇵 JP — Japón: 45.736
+🇯🇴 JO — Jordania: 176
+🇰🇿 KZ — Kazajistán: 3.836
+🇰🇬 KG — Kirguistán: 472
+🇰🇷 KR — Corea del Sur: 2.992
+🇱🇦 LA — Laos: 52
+🇱🇧 LB — Líbano: 416
+🇲🇳 MN — Mongolia: 1.284
+🇲🇾 MY — Malasia: 9.964
+🇳🇵 NP — Nepal: 5.400
+🇴🇲 OM — Omán: 8.124
+🇵🇸 PS — Palestina: 152
+🇵🇭 PH — Filipinas: 17.372
+🇶🇦 QA — Catar: 596
+🇸🇬 SG — Singapur: 100
+🇱🇰 LK — Sri Lanka: 5.320
+🇹🇼 TW — Taiwán: 3.864
+🇹🇭 TH — Tailandia: 52.776
+🇹🇷 TR — Turquía: 32.672
+🇻🇳 VN — Vietnam: 17.828
+
+
+
+=============Oceania=====================
+
+🇦🇺 AU — Australia: 61.304
+🇳🇿 NZ — Nueva Zelanda: 9.516
+
+Samoa americana SA 1: solo en validacion de test
+
+Observacion: hay 7932 paises que tienen codigo none
+
+
+
