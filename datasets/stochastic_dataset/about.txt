@@ -1,0 +1,113 @@
+link: https://huggingface.co/datasets/stochastic/random_streetview_images_pano_v0.0.2
+
+
+imágenes 360 reconstrucción aproximada.
+
+IMPORTANTE: tiene latitud y longitud
+
+11000 filas. 2.81 gb
+
+
+
+=======================================
+América del Sur
+
+🇦🇷 Argentina (AR)
+🇧🇷 Brasil (BR)
+🇨🇱 Chile (CL)
+🇨🇴 Colombia (CO)
+🇵🇪 Perú (PE)
+
+faltan paraguay y bolivia
+
+========================================
+Centro américa
+
+No hay ningún país. Faltaria panama Costa rica, puerto rico, Guatemala, Aruba, curacao y algunas islas bananeras
+
+
+========================================
+América del Norte
+
+🇨🇦 Canadá (CA)
+🇲🇽 México (MX)
+🇺🇸 Estados Unidos (US)
+========================================
+
+Europa
+
+🇦🇩 Andorra (AD)
+🇧🇪 Bélgica (BE)
+🇧🇬 Bulgaria (BG)
+🇭🇷 Croacia (HR)
+🇨🇿 Chequia (CZ)
+🇩🇰 Dinamarca (DK)
+🇩🇪 Alemania (DE)
+🇪🇪 Estonia (EE)
+🇫🇮 Finlandia (FI)
+🇫🇷 Francia (FR)
+🇬🇷 Grecia (GR)
+🇭🇺 Hungría (HU)
+🇮🇸 Islandia (IS)
+🇮🇪 Irlanda (IE)
+🇮🇹 Italia (IT)
+🇱🇻 Letonia (LV)
+🇱🇹 Lituania (LT)
+🇳🇱 Países Bajos (NL)
+🇳🇴 Noruega (NO)
+🇵🇱 Polonia (PL)
+🇵🇹 Portugal (PT)
+🇷🇴 Rumania (RO)
+🇷🇺 Rusia (RU)
+🇸🇰 Eslovaquia (SK)
+🇸🇮 Eslovenia (SI)
+🇪🇸 España (ES)
+🇸🇪 Suecia (SE)
+🇨🇭 Suiza (CH)
+🇺🇦 Ucrania (UA)
+🇬🇧 Reino Unido (GB)
+Rusia
+
+
+faltan: Albania, Austria(este sale mucho),  bosnia, Chipre, Luxemburgo, malta, macedonia del norte, turquia, kosovo
+
+==============================
+
+ASIA
+
+🇦🇪 Emiratos Árabes Unidos (AE)
+🇧🇩 Bangladés (BD)
+🇧🇹 Bután (BT)
+🇭🇰 Hong Kong (HK)
+🇮🇩 Indonesia (ID)
+🇮🇱 Israel (IL)
+🇯🇵 Japón (JP)
+🇰🇭 Camboya (KH)
+🇰🇷 Corea del Sur (KR)
+🇲🇾 Malasia (MY)
+🇸🇬 Singapur (SG)
+🇹🇭 Tailandia (TH)
+🇹🇼 Taiwán (TW)
+
+
+faltan: chipre, INDIA?¡?¡?¡¡?¡, georgia (muy nuevo), Jordania, kazajistan, kirguistan, laos, libano, nepal, oman, filipinas???????, sri lanka, turquia, vietnam??????
+
+Faltan muchos paises importantes
+==================================
+
+AFRICA
+🇧🇼 Botsuana (BW)
+🇸🇿 Esuatini (SZ)
+🇿🇦 Sudáfrica (ZA)
+
+Faltan senegal, Nigeria, ghana, Kenia, Uganda, Lesoto, namibia. (muchos países importantes, bostuana y eswatini casi ni salen en el juego)
+
+
+=================================
+
+OCEANIA
+🇦🇺 Australia (AU)
+🇳🇿 Nueva Zelanda (NZ)
+
+no hay mucho mas, por ahí algunas las islas de cocos o navidad pero son outliers
+

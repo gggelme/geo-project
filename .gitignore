@@ -1,0 +1,10 @@
+# Ignorar el entorno virtual de uv / python
+.venv/
+
+# Ignorar archivos CSV en cualquier carpeta o subcarpeta
+*.csv
+
+# Ignorar cachés y temporales de Python y Jupyter
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/

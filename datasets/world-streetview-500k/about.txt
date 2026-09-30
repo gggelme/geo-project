@@ -1,0 +1,9 @@
+https://huggingface.co/datasets/josefbednar/world-streetview-500k
+
+Tiene 2 millones de fotos, consta de una serie de 4 fotos representando norte sur este oeste.
+
+Imagen reducida y me da la sensación que también tiene reducida la calidad (creo que esto podría ser un pequeño problama)
+
+200 gigaaaaaaaaaaaas
+
+Tiene latitud y longitud y elevación (este ultimo no se como podríamos saberlo en testing)
