@@ -1,6 +1,9 @@
 # Ignorar el entorno virtual de uv / python
 .venv/
 
+# Configuración local
+.env
+
 # Ignorar archivos CSV en cualquier carpeta o subcarpeta
 *.csv
 
