@@ -6,17 +6,24 @@ readme = "README.md"
 authors = [
     { name = "gggelme", email = "gelmettisantiago@gmail.com" }
 ]
-requires-python = ">=3.12"
+requires-python = ">=3.12, <3.13"
 dependencies = [
+    "contextily>=1.7.1",
     "datasets>=5.0.1",
+    "geopandas>=1.2.0",
     "geopy>=2.5.0",
-    "matplotlib>=3.11.2",
+    "hf-xet>=1.6.0",
+    "huggingface-hub[hf-xet]>=1.33.0",
+    "ipykernel>=7.4.0",
+    "matplotlib==3.9.4",
+    "matplotlib-inline>=0.2.2",
     "numpy>=2.5.3",
     "pandas>=3.0.6",
     "pillow>=12.3.0",
+    "pyarrow>=25.0.1",
     "scikit-learn>=1.9.1",
-    "torch>=2.14.1",
-    "torchvision>=0.29.1",
+    "torch",
+    "torchvision",
     "tqdm>=4.70.1",
 ]
 
@@ -26,3 +33,12 @@ geo-proy = "geo_proy:main"
 [build-system]
 requires = ["uv_build>=0.12.13,<0.13.0"]
 build-backend = "uv_build"
+
+[[tool.uv.index]]
+name = "pytorch-cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu124" }
+torchvision = { index = "pytorch-cu124" }

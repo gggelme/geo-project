@@ -64,7 +64,6 @@ Analisis por continente (train)
 🇮🇪 IE — Irlanda: 11.136
 🇮🇲 IM — Isla de Man: 92
 🇮🇹 IT — Italia: 41.652
-🇽🇰 — Kosovo: (no aparece en tu lista)
 🇱🇻 LV — Letonia: 5.084
 🇱🇮 LI — Liechtenstein: 16
 🇱🇹 LT — Lituania: 5.404
