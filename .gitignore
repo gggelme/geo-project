@@ -14,3 +14,7 @@ __pycache__/
 
 # Matrices preparadas para EDA
 .cache/eda/
+
+# Caché de imágenes y resultados de entrenamiento
+.cache/modeling/
+outputs/
