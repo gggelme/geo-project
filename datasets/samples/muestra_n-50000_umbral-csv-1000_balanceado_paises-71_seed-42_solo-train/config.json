@@ -1,0 +1,2650 @@
+{
+  "tipo_muestra": "solo_train",
+  "tamano_muestra": 50000,
+  "filas_train": 50000,
+  "archivos_salida": {
+    "train": "data/train.parquet"
+  },
+  "validacion_global": {
+    "ruta": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\geo-project\\datasets\\samples\\data\\validation.parquet",
+    "filas": 3982,
+    "panoramas": 3685,
+    "columnas_exclusion": [
+      "image_id",
+      "panoid"
+    ],
+    "sha256_ids": "fa1d31495a8308ab1a6c73eb46999706cfe9cd0acf864259cc35ce38691eca00",
+    "bytes": 395417991,
+    "mtime_ns": 1792358772620594000
+  },
+  "min_filas_pais_csv": 1000,
+  "csv_conteos": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\geo-project\\src\\notebooks\\preprocessing\\assets\\countries_count.csv",
+  "conteos_csv": {
+    "AD": 24,
+    "AE": 780,
+    "AL": 624,
+    "AR": 29668,
+    "AT": 9096,
+    "AU": 61304,
+    "AX": 108,
+    "BA": 2720,
+    "BD": 12492,
+    "BE": 5604,
+    "BG": 6656,
+    "BM": 8,
+    "BO": 1156,
+    "BR": 136920,
+    "BT": 196,
+    "BW": 1984,
+    "CA": 63792,
+    "CH": 3712,
+    "CL": 10944,
+    "CO": 10460,
+    "CR": 1592,
+    "CW": 48,
+    "CY": 584,
+    "CZ": 10740,
+    "DE": 36440,
+    "DK": 6868,
+    "DO": 112,
+    "EC": 2756,
+    "EE": 4912,
+    "ES": 41492,
+    "FI": 19732,
+    "FO": 116,
+    "FR": 86208,
+    "GB": 30740,
+    "GH": 1228,
+    "GL": 28,
+    "GR": 11344,
+    "GT": 900,
+    "HK": 108,
+    "HR": 5164,
+    "HU": 7612,
+    "ID": 48156,
+    "IE": 11136,
+    "IL": 716,
+    "IM": 92,
+    "IN": 266860,
+    "IS": 1712,
+    "IT": 41652,
+    "JE": 28,
+    "JO": 176,
+    "JP": 45736,
+    "KE": 7696,
+    "KG": 472,
+    "KH": 7244,
+    "KR": 2992,
+    "KZ": 3836,
+    "LA": 52,
+    "LB": 416,
+    "LI": 16,
+    "LK": 5320,
+    "LS": 440,
+    "LT": 5404,
+    "LU": 500,
+    "LV": 5084,
+    "ME": 440,
+    "MK": 276,
+    "MN": 1284,
+    "MT": 60,
+    "MX": 45260,
+    "MY": 9964,
+    "NA": 2860,
+    "NG": 8364,
+    "NL": 6252,
+    "NO": 12704,
+    "NP": 5400,
+    "NZ": 9516,
+    "OM": 8124,
+    "PA": 948,
+    "PE": 9000,
+    "PH": 17372,
+    "PL": 37336,
+    "PR": 860,
+    "PS": 152,
+    "PT": 10516,
+    "PY": 1912,
+    "QA": 596,
+    "RE": 68,
+    "RO": 12728,
+    "RS": 1396,
+    "RU": 55884,
+    "RW": 560,
+    "SE": 22944,
+    "SG": 100,
+    "SI": 2868,
+    "SK": 4092,
+    "SM": 4,
+    "SN": 1868,
+    "ST": 36,
+    "SZ": 292,
+    "TH": 52776,
+    "TN": 444,
+    "TR": 32672,
+    "TW": 3864,
+    "UA": 5072,
+    "UG": 172,
+    "US": 476840,
+    "UY": 3000,
+    "VI": 44,
+    "VN": 17828,
+    "ZA": 23672
+  },
+  "paises_admitidos_csv": [
+    "AR",
+    "AT",
+    "AU",
+    "BA",
+    "BD",
+    "BE",
+    "BG",
+    "BO",
+    "BR",
+    "BW",
+    "CA",
+    "CH",
+    "CL",
+    "CO",
+    "CR",
+    "CZ",
+    "DE",
+    "DK",
+    "EC",
+    "EE",
+    "ES",
+    "FI",
+    "FR",
+    "GB",
+    "GH",
+    "GR",
+    "HR",
+    "HU",
+    "ID",
+    "IE",
+    "IN",
+    "IS",
+    "IT",
+    "JP",
+    "KE",
+    "KH",
+    "KR",
+    "KZ",
+    "LK",
+    "LT",
+    "LV",
+    "MN",
+    "MX",
+    "MY",
+    "NA",
+    "NG",
+    "NL",
+    "NO",
+    "NP",
+    "NZ",
+    "OM",
+    "PE",
+    "PH",
+    "PL",
+    "PT",
+    "PY",
+    "RO",
+    "RS",
+    "RU",
+    "SE",
+    "SI",
+    "SK",
+    "SN",
+    "TH",
+    "TR",
+    "TW",
+    "UA",
+    "US",
+    "UY",
+    "VN",
+    "ZA"
+  ],
+  "semilla": 42,
+  "balanceado": true,
+  "paises_incluidos": [
+    "AR",
+    "AT",
+    "AU",
+    "BA",
+    "BD",
+    "BE",
+    "BG",
+    "BO",
+    "BR",
+    "BW",
+    "CA",
+    "CH",
+    "CL",
+    "CO",
+    "CR",
+    "CZ",
+    "DE",
+    "DK",
+    "EC",
+    "EE",
+    "ES",
+    "FI",
+    "FR",
+    "GB",
+    "GH",
+    "GR",
+    "HR",
+    "HU",
+    "ID",
+    "IE",
+    "IN",
+    "IS",
+    "IT",
+    "JP",
+    "KE",
+    "KH",
+    "KR",
+    "KZ",
+    "LK",
+    "LT",
+    "LV",
+    "MN",
+    "MX",
+    "MY",
+    "NA",
+    "NG",
+    "NL",
+    "NO",
+    "NP",
+    "NZ",
+    "OM",
+    "PE",
+    "PH",
+    "PL",
+    "PT",
+    "PY",
+    "RO",
+    "RS",
+    "RU",
+    "SE",
+    "SI",
+    "SK",
+    "SN",
+    "TH",
+    "TR",
+    "TW",
+    "UA",
+    "US",
+    "UY",
+    "VN",
+    "ZA"
+  ],
+  "metodo": "exclusión de validación global por image_id y panoid + muestreo balanceado",
+  "unidad": "fila/imagen",
+  "ruta_datos": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data",
+  "patron_archivos": "**/train-*.parquet",
+  "archivos_fuente": [
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00000-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501182030,
+      "mtime_ns": 1792112246321919600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00001-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 514099202,
+      "mtime_ns": 1792112306350825100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00002-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501719388,
+      "mtime_ns": 1792112362717022500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00003-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502367906,
+      "mtime_ns": 1792112420839668200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00004-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503417908,
+      "mtime_ns": 1792112482223227100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00005-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503119264,
+      "mtime_ns": 1792112540756488400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00006-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 507587189,
+      "mtime_ns": 1792112597181641400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00007-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502348770,
+      "mtime_ns": 1792112650306268500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00008-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502847459,
+      "mtime_ns": 1792112712634406100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00009-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503387350,
+      "mtime_ns": 1792112765778912500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00010-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504257227,
+      "mtime_ns": 1792112825124417900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00011-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501228893,
+      "mtime_ns": 1792112881175929400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00012-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504720410,
+      "mtime_ns": 1792112938491272500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00013-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 507380704,
+      "mtime_ns": 1792112994603746000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00014-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506463006,
+      "mtime_ns": 1792113050100506700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00015-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 498513264,
+      "mtime_ns": 1792113099670029100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00016-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 496967901,
+      "mtime_ns": 1792113155029030900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00017-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 508100417,
+      "mtime_ns": 1792113280449164700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00018-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 508775016,
+      "mtime_ns": 1792113344109609100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00019-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 509972073,
+      "mtime_ns": 1792113401668576700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00020-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 507516919,
+      "mtime_ns": 1792113453342339500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00021-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 498149526,
+      "mtime_ns": 1792113507850705600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00022-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 507535817,
+      "mtime_ns": 1792113566495543300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00023-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502540962,
+      "mtime_ns": 1792113624376417900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00024-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501007529,
+      "mtime_ns": 1792113677898519200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00025-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502734807,
+      "mtime_ns": 1792113733817926500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00026-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 495949225,
+      "mtime_ns": 1792113790964635000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00027-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 507350579,
+      "mtime_ns": 1792113846992202500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00028-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506461571,
+      "mtime_ns": 1792113912633990700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00029-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 496695595,
+      "mtime_ns": 1792113972419854200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00030-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501377921,
+      "mtime_ns": 1792114034090413800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00031-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 496879485,
+      "mtime_ns": 1792114090542434400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00032-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501762909,
+      "mtime_ns": 1792114151841363600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00033-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504658777,
+      "mtime_ns": 1792114221801144300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00034-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501217275,
+      "mtime_ns": 1792114310702495200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00035-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506437716,
+      "mtime_ns": 1792114365980922900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00036-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 508039741,
+      "mtime_ns": 1792114424636112300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00037-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502548207,
+      "mtime_ns": 1792114488672610000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00038-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506110215,
+      "mtime_ns": 1792114545694182400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00039-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502401173,
+      "mtime_ns": 1792114608808588700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00040-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 508267744,
+      "mtime_ns": 1792114664338874100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00041-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 493574426,
+      "mtime_ns": 1792114716033035500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00042-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 497173215,
+      "mtime_ns": 1792114770792925900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00043-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503076596,
+      "mtime_ns": 1792114825972286400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00044-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503305067,
+      "mtime_ns": 1792114881998266400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00045-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506458786,
+      "mtime_ns": 1792114937049165500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00046-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 492697873,
+      "mtime_ns": 1792114990880770600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00047-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501832630,
+      "mtime_ns": 1792115041900191400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00048-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 507053538,
+      "mtime_ns": 1792115093868961500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00049-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502369462,
+      "mtime_ns": 1792115148664769100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00050-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 508803820,
+      "mtime_ns": 1792115201019767000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00051-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504825005,
+      "mtime_ns": 1792115255285181500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00052-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502215569,
+      "mtime_ns": 1792115353676137500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00053-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 514394153,
+      "mtime_ns": 1792115406622656400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00054-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504452805,
+      "mtime_ns": 1792115463912286900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00055-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506363721,
+      "mtime_ns": 1792115516425224100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00056-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502169596,
+      "mtime_ns": 1792115570438052700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00057-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 510489898,
+      "mtime_ns": 1792115624342834200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00058-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 500909822,
+      "mtime_ns": 1792115681727154100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00059-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503272759,
+      "mtime_ns": 1792115735489969000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00060-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502164808,
+      "mtime_ns": 1792115790466504700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00061-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505256513,
+      "mtime_ns": 1792115845884457900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00062-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499726900,
+      "mtime_ns": 1792115914209641400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00063-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502278236,
+      "mtime_ns": 1792115969976731300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00064-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501723591,
+      "mtime_ns": 1792116036685393300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00065-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506697137,
+      "mtime_ns": 1792116091996165200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00066-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 508178292,
+      "mtime_ns": 1792116144746739300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00067-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506993263,
+      "mtime_ns": 1792116201205601200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00068-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502404540,
+      "mtime_ns": 1792116253146687500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00069-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501513686,
+      "mtime_ns": 1792116311461706300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00070-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 508426601,
+      "mtime_ns": 1792116387261061000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00071-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499465336,
+      "mtime_ns": 1792116441569222500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00072-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 507169779,
+      "mtime_ns": 1792116498582446100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00073-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503377368,
+      "mtime_ns": 1792116553495917500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00074-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499204855,
+      "mtime_ns": 1792116609867004300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00075-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 495580088,
+      "mtime_ns": 1792116664588402800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00076-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501665522,
+      "mtime_ns": 1792116718987710100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00077-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502744026,
+      "mtime_ns": 1792116773790438500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00078-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 496027538,
+      "mtime_ns": 1792116828464150600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00079-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503064670,
+      "mtime_ns": 1792116883610618500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00080-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 508187966,
+      "mtime_ns": 1792116940011245500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00081-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501363622,
+      "mtime_ns": 1792116998448988600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00082-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 496943909,
+      "mtime_ns": 1792117061031538200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00083-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 494719998,
+      "mtime_ns": 1792117114135555900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00084-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503579788,
+      "mtime_ns": 1792117170304341000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00085-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 498648425,
+      "mtime_ns": 1792117224541315200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00086-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506389401,
+      "mtime_ns": 1792117279095262600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00087-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502132427,
+      "mtime_ns": 1792117333766500100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00088-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 496732211,
+      "mtime_ns": 1792117429493590700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00089-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 496772670,
+      "mtime_ns": 1792117481148615900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00090-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505668833,
+      "mtime_ns": 1792117536020582100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00091-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 510344480,
+      "mtime_ns": 1792117591159101500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00092-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505331886,
+      "mtime_ns": 1792117646279458100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00093-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 500101628,
+      "mtime_ns": 1792117698141032300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00094-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505439056,
+      "mtime_ns": 1792117752159066500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00095-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503579624,
+      "mtime_ns": 1792117806063758600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00096-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 496047381,
+      "mtime_ns": 1792117859088906800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00097-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 507932321,
+      "mtime_ns": 1792117915909113600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00098-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499625946,
+      "mtime_ns": 1792117970087821000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00099-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505410158,
+      "mtime_ns": 1792118023705647800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00100-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505199574,
+      "mtime_ns": 1792118078145913000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00101-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 500129130,
+      "mtime_ns": 1792118132070251200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00102-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501571623,
+      "mtime_ns": 1792118186801096900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00103-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502979456,
+      "mtime_ns": 1792118241004403900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00104-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502338621,
+      "mtime_ns": 1792118296843758000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00105-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505897334,
+      "mtime_ns": 1792118348534916300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00106-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505415740,
+      "mtime_ns": 1792118470754962900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00107-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504042304,
+      "mtime_ns": 1792118524313611300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00108-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503617118,
+      "mtime_ns": 1792118580808869500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00109-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502339978,
+      "mtime_ns": 1792118639967126500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00110-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 500816267,
+      "mtime_ns": 1792118694435670100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00111-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499062641,
+      "mtime_ns": 1792118749259023700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00112-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504764609,
+      "mtime_ns": 1792118805672548000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00113-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505756863,
+      "mtime_ns": 1792118858352216000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00114-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501167388,
+      "mtime_ns": 1792118911879650400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00115-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 497477016,
+      "mtime_ns": 1792118967293777800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00116-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 510825785,
+      "mtime_ns": 1792119024659295700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00117-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499155551,
+      "mtime_ns": 1792119082672350600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00118-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501073535,
+      "mtime_ns": 1792119138126290900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00119-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505181595,
+      "mtime_ns": 1792119192198520700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00120-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506019395,
+      "mtime_ns": 1792119247602706500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00121-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 507412959,
+      "mtime_ns": 1792119302240815100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00122-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504475110,
+      "mtime_ns": 1792119359554856400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00123-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501773594,
+      "mtime_ns": 1792119414673546600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00124-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502419890,
+      "mtime_ns": 1792119505504803100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00125-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 500707748,
+      "mtime_ns": 1792119565603658500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00126-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505083286,
+      "mtime_ns": 1792119619270256300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00127-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504398319,
+      "mtime_ns": 1792119675775390300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00128-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 507303642,
+      "mtime_ns": 1792119730032394300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00129-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 498584958,
+      "mtime_ns": 1792119783763885700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00130-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 498862765,
+      "mtime_ns": 1792119839739739900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00131-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506049926,
+      "mtime_ns": 1792167571621497000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00132-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 509251566,
+      "mtime_ns": 1792298987439527400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00133-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505816441,
+      "mtime_ns": 1792299042465907100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00134-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 508984274,
+      "mtime_ns": 1792299106195460300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00135-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503067181,
+      "mtime_ns": 1792299160460723000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00136-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504050780,
+      "mtime_ns": 1792299216339420300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00137-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504347348,
+      "mtime_ns": 1792299271226336200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00138-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 511244185,
+      "mtime_ns": 1792299327068200000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00139-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501692639,
+      "mtime_ns": 1792299394374916100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00140-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 500632775,
+      "mtime_ns": 1792299446519676400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00141-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503622810,
+      "mtime_ns": 1792299505927322400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00142-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503812881,
+      "mtime_ns": 1792299577025678100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00143-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503879727,
+      "mtime_ns": 1792299630916674000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00144-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504859520,
+      "mtime_ns": 1792299684760861500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00145-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 498866817,
+      "mtime_ns": 1792299738711422800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00146-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505029917,
+      "mtime_ns": 1792299790907172200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00147-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 496813811,
+      "mtime_ns": 1792299841187228500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00148-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 496244061,
+      "mtime_ns": 1792299893946887800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00149-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 511417446,
+      "mtime_ns": 1792300021208353700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00150-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503550862,
+      "mtime_ns": 1792300070988670200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00151-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505205274,
+      "mtime_ns": 1792300120035132000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00152-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502133510,
+      "mtime_ns": 1792300170587516500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00153-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501744559,
+      "mtime_ns": 1792300218984481400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00154-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504250584,
+      "mtime_ns": 1792300274090112800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00155-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503523686,
+      "mtime_ns": 1792300325665943200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00156-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 496578449,
+      "mtime_ns": 1792300375744703400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00157-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499584916,
+      "mtime_ns": 1792300425701679700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00158-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499608978,
+      "mtime_ns": 1792300478706477000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00159-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506755139,
+      "mtime_ns": 1792300530592003700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00160-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 497153587,
+      "mtime_ns": 1792300583774296300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00161-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504046133,
+      "mtime_ns": 1792300635090587200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00162-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505610602,
+      "mtime_ns": 1792300686914081700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00163-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 509898700,
+      "mtime_ns": 1792300736492130200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00164-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501850315,
+      "mtime_ns": 1792300790403886700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00165-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 508676929,
+      "mtime_ns": 1792300843513278600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00166-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 500130573,
+      "mtime_ns": 1792300891627560800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00167-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501288185,
+      "mtime_ns": 1792300940780810900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00168-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 509102038,
+      "mtime_ns": 1792301057985565900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00169-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505456660,
+      "mtime_ns": 1792301107313793800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00170-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502689400,
+      "mtime_ns": 1792301156645337900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00171-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503662794,
+      "mtime_ns": 1792301207282870800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00172-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504454933,
+      "mtime_ns": 1792301257662100200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00173-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503707197,
+      "mtime_ns": 1792301308305839500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00174-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502171763,
+      "mtime_ns": 1792301361191185000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00175-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502057817,
+      "mtime_ns": 1792301411186423500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00176-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503969525,
+      "mtime_ns": 1792301461939241500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00177-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506264927,
+      "mtime_ns": 1792301512243682500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00178-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505477383,
+      "mtime_ns": 1792301562709473300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00179-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505488814,
+      "mtime_ns": 1792301614189463900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00180-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 508768437,
+      "mtime_ns": 1792301663896378500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00181-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502210164,
+      "mtime_ns": 1792301713814286900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00182-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 498309146,
+      "mtime_ns": 1792301765712097400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00183-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504643822,
+      "mtime_ns": 1792301817529319300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00184-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504338810,
+      "mtime_ns": 1792301865687062500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00185-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 498938834,
+      "mtime_ns": 1792301920161557600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00186-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 493241497,
+      "mtime_ns": 1792301970224046500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00187-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 500645358,
+      "mtime_ns": 1792302096093950000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00188-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503838819,
+      "mtime_ns": 1792302145386303200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00189-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 507672174,
+      "mtime_ns": 1792302194116858900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00190-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502295676,
+      "mtime_ns": 1792302244482252900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00191-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502443161,
+      "mtime_ns": 1792302293676118900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00192-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 497795826,
+      "mtime_ns": 1792302345162304100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00193-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 496030923,
+      "mtime_ns": 1792302397871431900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00194-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 498061694,
+      "mtime_ns": 1792302448423168800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00195-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502352710,
+      "mtime_ns": 1792302499650835700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00196-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501924415,
+      "mtime_ns": 1792302552619835700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00197-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499321070,
+      "mtime_ns": 1792302603823211400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00198-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504330184,
+      "mtime_ns": 1792302660380486600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00199-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 507423399,
+      "mtime_ns": 1792302712956511300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00200-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 500059178,
+      "mtime_ns": 1792302762044355800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00201-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504193490,
+      "mtime_ns": 1792302810039954400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00202-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 500760002,
+      "mtime_ns": 1792302861254554300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00203-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504077686,
+      "mtime_ns": 1792302912230736100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00204-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 500247603,
+      "mtime_ns": 1792302962716662600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00205-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505758159,
+      "mtime_ns": 1792303013078961300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00206-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 507605837,
+      "mtime_ns": 1792303264604318900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00207-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503769253,
+      "mtime_ns": 1792303326058096800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00208-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499205615,
+      "mtime_ns": 1792303377411195000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00209-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504483232,
+      "mtime_ns": 1792303426249333400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00210-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 500698622,
+      "mtime_ns": 1792303474579853600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00211-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 498279509,
+      "mtime_ns": 1792303525758341200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00212-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501502434,
+      "mtime_ns": 1792303576238938300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00213-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499336186,
+      "mtime_ns": 1792303626287458100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00214-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506953006,
+      "mtime_ns": 1792303676615293500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00215-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499663871,
+      "mtime_ns": 1792303728019244200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00216-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499361191,
+      "mtime_ns": 1792303779130639200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00217-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503342120,
+      "mtime_ns": 1792303831142071300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00218-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499210349,
+      "mtime_ns": 1792303886896222500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00219-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 500080034,
+      "mtime_ns": 1792303938006943800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00220-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 497022045,
+      "mtime_ns": 1792303989612353500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00221-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505367770,
+      "mtime_ns": 1792304040993879800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00222-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 507962933,
+      "mtime_ns": 1792304096862379800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00223-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 507636944,
+      "mtime_ns": 1792304180022754300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00224-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504229581,
+      "mtime_ns": 1792304235146575200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00225-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 511115968,
+      "mtime_ns": 1792304287790389600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00226-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503840777,
+      "mtime_ns": 1792304342487208700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00227-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502806177,
+      "mtime_ns": 1792304392313562900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00228-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506613150,
+      "mtime_ns": 1792304445665836300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00229-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505427159,
+      "mtime_ns": 1792304498455957700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00230-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 495862980,
+      "mtime_ns": 1792304550526147400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00231-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501869051,
+      "mtime_ns": 1792304601668118000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00232-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 500156207,
+      "mtime_ns": 1792304652088849700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00233-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 500669518,
+      "mtime_ns": 1792304702869669700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00234-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506357370,
+      "mtime_ns": 1792304754809487800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00235-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 508099125,
+      "mtime_ns": 1792304807149906900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00236-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505247295,
+      "mtime_ns": 1792304858471635100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00237-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502179344,
+      "mtime_ns": 1792304912014372200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00238-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 501236158,
+      "mtime_ns": 1792304964885245300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00239-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503077945,
+      "mtime_ns": 1792305028434008000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00240-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 498351319,
+      "mtime_ns": 1792305089921491300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00241-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 498402689,
+      "mtime_ns": 1792305241177547600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00242-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 497721223,
+      "mtime_ns": 1792305306849720800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00243-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 503849627,
+      "mtime_ns": 1792305361150866200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00244-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504541274,
+      "mtime_ns": 1792305415577105000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00245-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499239668,
+      "mtime_ns": 1792305468478442800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00246-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 505213092,
+      "mtime_ns": 1792305521886258100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00247-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 504843554,
+      "mtime_ns": 1792305575417603600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00248-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 498588745,
+      "mtime_ns": 1792305627473273900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00249-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 497505943,
+      "mtime_ns": 1792305679417036200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00250-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499785529,
+      "mtime_ns": 1792305732622968000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00251-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499217822,
+      "mtime_ns": 1792305785708812700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00252-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506374490,
+      "mtime_ns": 1792305837762086700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00253-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 500007961,
+      "mtime_ns": 1792305892238605100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00254-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502422911,
+      "mtime_ns": 1792305945258344500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00255-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 502763518,
+      "mtime_ns": 1792305996459108900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00256-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 506221683,
+      "mtime_ns": 1792306049093982900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00257-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 496399560,
+      "mtime_ns": 1792306102067911800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00258-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499417717,
+      "mtime_ns": 1792306155201017900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00259-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 508106798,
+      "mtime_ns": 1792306262220838300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00260-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499219512,
+      "mtime_ns": 1792306314750355800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00261-of-00393.parquet",
+      "filas": 5087,
+      "bytes": 499319026,
+      "mtime_ns": 1792306369462968800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00262-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 501759222,
+      "mtime_ns": 1792306423276875200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00263-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 510358204,
+      "mtime_ns": 1792306474255860200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00264-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 499833185,
+      "mtime_ns": 1792306527089189300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00265-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 506888099,
+      "mtime_ns": 1792306583164061300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00266-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 510421124,
+      "mtime_ns": 1792306641865492900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00267-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 503162401,
+      "mtime_ns": 1792306698261144500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00268-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 499856293,
+      "mtime_ns": 1792306755253836900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00269-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 505794317,
+      "mtime_ns": 1792306812805263700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00270-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 506344881,
+      "mtime_ns": 1792306869206047500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00271-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 501365015,
+      "mtime_ns": 1792306926228183100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00272-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 507773829,
+      "mtime_ns": 1792306983979603400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00273-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 499856271,
+      "mtime_ns": 1792307040092169900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00274-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 500146606,
+      "mtime_ns": 1792307095971934800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00275-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 503229440,
+      "mtime_ns": 1792307152474105700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00276-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 500309981,
+      "mtime_ns": 1792307208762363200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00277-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 509295634,
+      "mtime_ns": 1792307345536192900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00278-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 505125861,
+      "mtime_ns": 1792307403450031100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00279-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 504585073,
+      "mtime_ns": 1792307459934862600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00280-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 498078098,
+      "mtime_ns": 1792307528982224200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00281-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 505040305,
+      "mtime_ns": 1792307593241622500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00282-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 508327327,
+      "mtime_ns": 1792307655097299200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00283-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 506363925,
+      "mtime_ns": 1792307720121407100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00284-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 502407471,
+      "mtime_ns": 1792307785274785200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00285-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 509489641,
+      "mtime_ns": 1792307850803627700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00286-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 503637352,
+      "mtime_ns": 1792307917809791300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00287-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 506147419,
+      "mtime_ns": 1792307982805391600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00288-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 506233080,
+      "mtime_ns": 1792308047272834400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00289-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 501418032,
+      "mtime_ns": 1792308111052095000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00290-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 504881805,
+      "mtime_ns": 1792308176071305600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00291-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 501789851,
+      "mtime_ns": 1792308238245493200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00292-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 501802109,
+      "mtime_ns": 1792308356280227900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00293-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 506157296,
+      "mtime_ns": 1792308420989409500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00294-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 504114633,
+      "mtime_ns": 1792308485174800700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00295-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 504702526,
+      "mtime_ns": 1792308550685267900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00296-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 499719428,
+      "mtime_ns": 1792308614270307300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00297-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 499447585,
+      "mtime_ns": 1792308680712158600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00298-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 498374918,
+      "mtime_ns": 1792308746145669000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00299-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 510399750,
+      "mtime_ns": 1792308806043310900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00300-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 511401683,
+      "mtime_ns": 1792308864090767400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00301-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 514788092,
+      "mtime_ns": 1792308920117967600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00302-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 507580820,
+      "mtime_ns": 1792308973510964600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00303-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 500311368,
+      "mtime_ns": 1792309026093766700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00304-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 497555298,
+      "mtime_ns": 1792309078803971400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00305-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 506815243,
+      "mtime_ns": 1792309129914080500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00306-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 506562680,
+      "mtime_ns": 1792309183225268700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00307-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 500567288,
+      "mtime_ns": 1792309233587196200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00308-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 506922462,
+      "mtime_ns": 1792309288213024000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00309-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 504215669,
+      "mtime_ns": 1792309384933920500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00310-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 504802072,
+      "mtime_ns": 1792309444131614300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00311-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 504048470,
+      "mtime_ns": 1792309499670589700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00312-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 495220162,
+      "mtime_ns": 1792309552645113700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00313-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 495884652,
+      "mtime_ns": 1792309605206399200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00314-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 501364126,
+      "mtime_ns": 1792309657499745600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00315-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 501290538,
+      "mtime_ns": 1792309709291013200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00316-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 505395137,
+      "mtime_ns": 1792309760543078300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00317-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 509735781,
+      "mtime_ns": 1792309813084947200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00318-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 504995185,
+      "mtime_ns": 1792309865841215100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00319-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 504468390,
+      "mtime_ns": 1792309920977371000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00320-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 505928315,
+      "mtime_ns": 1792309974052033400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00321-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 502962756,
+      "mtime_ns": 1792310027831640700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00322-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 504002404,
+      "mtime_ns": 1792310081138730400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00323-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 509661397,
+      "mtime_ns": 1792310133061648900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00324-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 499619565,
+      "mtime_ns": 1792310182348722700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00325-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 511441811,
+      "mtime_ns": 1792310235280550000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00326-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 501207597,
+      "mtime_ns": 1792310288487100800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00327-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 500380604,
+      "mtime_ns": 1792310338797897700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00328-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 497118729,
+      "mtime_ns": 1792310423040473500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00329-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 507755822,
+      "mtime_ns": 1792310474825189200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00330-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 505484544,
+      "mtime_ns": 1792310524867112900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00331-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 504566738,
+      "mtime_ns": 1792310574795774500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00332-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 503911028,
+      "mtime_ns": 1792310626928982900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00333-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 506127597,
+      "mtime_ns": 1792310680033254500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00334-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 505407793,
+      "mtime_ns": 1792310735979836400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00335-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 507394992,
+      "mtime_ns": 1792310788246596300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00336-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 507179746,
+      "mtime_ns": 1792310840559921300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00337-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 508105970,
+      "mtime_ns": 1792310892801647300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00338-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 499458177,
+      "mtime_ns": 1792310943972952900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00339-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 506163135,
+      "mtime_ns": 1792310996033813700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00340-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 503398577,
+      "mtime_ns": 1792311050169019700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00341-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 501816984,
+      "mtime_ns": 1792311100760683300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00342-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 498461992,
+      "mtime_ns": 1792311150773350600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00343-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 495847079,
+      "mtime_ns": 1792311203425016900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00344-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 505043587,
+      "mtime_ns": 1792311254915638800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00345-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 500366438,
+      "mtime_ns": 1792311307782087600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00346-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 503078436,
+      "mtime_ns": 1792311360212247700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00347-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 503292548,
+      "mtime_ns": 1792311468214223600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00348-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 502831949,
+      "mtime_ns": 1792311520364926300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00349-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 500128647,
+      "mtime_ns": 1792311572528815200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00350-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 498425575,
+      "mtime_ns": 1792311625951192400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00351-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 509636616,
+      "mtime_ns": 1792311685360730700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00352-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 513855475,
+      "mtime_ns": 1792311739379899800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00353-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 504093710,
+      "mtime_ns": 1792311794013902500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00354-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 503278391,
+      "mtime_ns": 1792311845011429500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00355-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 506242308,
+      "mtime_ns": 1792311899621422700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00356-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 507195177,
+      "mtime_ns": 1792311954780304900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00357-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 503996159,
+      "mtime_ns": 1792312006630442300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00358-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 502994494,
+      "mtime_ns": 1792312058318723700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00359-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 501008862,
+      "mtime_ns": 1792312110926269800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00360-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 500609518,
+      "mtime_ns": 1792312164379211900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00361-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 504696206,
+      "mtime_ns": 1792312218488524300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00362-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 500322965,
+      "mtime_ns": 1792312274836868400
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00363-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 507001668,
+      "mtime_ns": 1792312328168629600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00364-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 498962026,
+      "mtime_ns": 1792312380367810600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00365-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 502004477,
+      "mtime_ns": 1792312510189378700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00366-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 501965536,
+      "mtime_ns": 1792312564021523000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00367-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 500112678,
+      "mtime_ns": 1792312617375018000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00368-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 506625747,
+      "mtime_ns": 1792312669906749300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00369-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 500100709,
+      "mtime_ns": 1792312722708271900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00370-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 506438784,
+      "mtime_ns": 1792312774409342900
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00371-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 496242253,
+      "mtime_ns": 1792312827134299700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00372-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 496327719,
+      "mtime_ns": 1792312878554767700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00373-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 507254460,
+      "mtime_ns": 1792312932656174500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00374-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 498147289,
+      "mtime_ns": 1792312986291215700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00375-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 501975696,
+      "mtime_ns": 1792313040595993200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00376-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 506509319,
+      "mtime_ns": 1792313092408712100
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00377-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 504721283,
+      "mtime_ns": 1792313144045559300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00378-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 508095478,
+      "mtime_ns": 1792313199052557600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00379-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 504294550,
+      "mtime_ns": 1792313251813033700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00380-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 502205376,
+      "mtime_ns": 1792313306464716700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00381-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 501035609,
+      "mtime_ns": 1792313362031624600
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00382-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 508472070,
+      "mtime_ns": 1792313418373438000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00383-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 510335339,
+      "mtime_ns": 1792313548458116200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00384-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 497164599,
+      "mtime_ns": 1792313598151025300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00385-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 501308499,
+      "mtime_ns": 1792313648723372200
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00386-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 503614248,
+      "mtime_ns": 1792313700366159300
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00387-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 500357431,
+      "mtime_ns": 1792313750407909800
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00388-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 502887693,
+      "mtime_ns": 1792313802822174700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00389-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 504234412,
+      "mtime_ns": 1792313853175663500
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00390-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 500880611,
+      "mtime_ns": 1792313905214706000
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00391-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 496211284,
+      "mtime_ns": 1792313954626194700
+    },
+    {
+      "archivo": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data\\train-00392-of-00393.parquet",
+      "filas": 5086,
+      "bytes": 503829276,
+      "mtime_ns": 1792314006763996800
+    }
+  ],
+  "filas_fuente": 1999060,
+  "filas_sin_pais": 7932,
+  "filas_excluidas_validacion_global": 14740,
+  "filas_ids_invalidos": 0
+}
