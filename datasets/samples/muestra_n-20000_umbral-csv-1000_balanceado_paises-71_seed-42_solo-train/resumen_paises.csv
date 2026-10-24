@@ -1,0 +1,111 @@
+country_code,cantidad_csv,disponibles_originales,excluidas_validacion_global,excluidas_ids_invalidos,disponibles,admitido_csv,seleccionadas,incluido,motivo,train
+AD,24,24,0,0,24,False,0,False,cantidad CSV menor al umbral,0
+AE,780,780,0,0,780,False,0,False,cantidad CSV menor al umbral,0
+AL,624,624,0,0,624,False,0,False,cantidad CSV menor al umbral,0
+AR,29668,29668,76,0,29592,True,282,True,incluido,282
+AT,9096,9096,24,0,9072,True,282,True,incluido,282
+AU,61304,61304,156,0,61148,True,282,True,incluido,282
+AX,108,108,0,0,108,False,0,False,cantidad CSV menor al umbral,0
+BA,2720,2720,20,0,2700,True,282,True,incluido,282
+BD,12492,12492,32,0,12460,True,282,True,incluido,282
+BE,5604,5604,20,0,5584,True,282,True,incluido,282
+BG,6656,6656,20,0,6636,True,282,True,incluido,282
+BM,8,8,0,0,8,False,0,False,cantidad CSV menor al umbral,0
+BO,1156,1156,20,0,1136,True,282,True,incluido,282
+BR,136920,136920,344,0,136576,True,282,True,incluido,282
+BT,196,196,0,0,196,False,0,False,cantidad CSV menor al umbral,0
+BW,1984,1984,20,0,1964,True,282,True,incluido,282
+CA,63792,63792,160,0,63632,True,282,True,incluido,282
+CH,3712,3712,20,0,3692,True,282,True,incluido,282
+CL,10944,10944,28,0,10916,True,282,True,incluido,282
+CO,10460,10460,28,0,10432,True,282,True,incluido,282
+CR,1592,1592,20,0,1572,True,282,True,incluido,282
+CW,48,48,0,0,48,False,0,False,cantidad CSV menor al umbral,0
+CY,584,584,0,0,584,False,0,False,cantidad CSV menor al umbral,0
+CZ,10740,10740,28,0,10712,True,282,True,incluido,282
+DE,36440,36440,92,0,36348,True,282,True,incluido,282
+DK,6868,6868,20,0,6848,True,282,True,incluido,282
+DO,112,112,0,0,112,False,0,False,cantidad CSV menor al umbral,0
+EC,2756,2756,20,0,2736,True,282,True,incluido,282
+EE,4912,4912,20,0,4892,True,282,True,incluido,282
+ES,41492,41492,104,0,41388,True,282,True,incluido,282
+FI,19732,19732,52,0,19680,True,282,True,incluido,282
+FO,116,116,0,0,116,False,0,False,cantidad CSV menor al umbral,0
+FR,86208,86208,216,0,85992,True,282,True,incluido,282
+GB,30740,30740,76,0,30664,True,282,True,incluido,282
+GH,1228,1228,20,0,1208,True,282,True,incluido,282
+GL,28,28,0,0,28,False,0,False,cantidad CSV menor al umbral,0
+GR,11344,11344,28,0,11316,True,282,True,incluido,282
+GT,900,900,0,0,900,False,0,False,cantidad CSV menor al umbral,0
+HK,108,108,0,0,108,False,0,False,cantidad CSV menor al umbral,0
+HR,5164,5164,20,0,5144,True,282,True,incluido,282
+HU,7612,7612,20,0,7592,True,282,True,incluido,282
+ID,48156,48156,120,0,48036,True,282,True,incluido,282
+IE,11136,11136,28,0,11108,True,282,True,incluido,282
+IL,716,716,0,0,716,False,0,False,cantidad CSV menor al umbral,0
+IM,92,92,0,0,92,False,0,False,cantidad CSV menor al umbral,0
+IN,266860,266860,676,0,266184,True,282,True,incluido,282
+IS,1712,1712,20,0,1692,True,282,True,incluido,282
+IT,41652,41652,104,0,41548,True,282,True,incluido,282
+JE,28,28,0,0,28,False,0,False,cantidad CSV menor al umbral,0
+JO,176,176,0,0,176,False,0,False,cantidad CSV menor al umbral,0
+JP,45736,45736,116,0,45620,True,282,True,incluido,282
+KE,7696,7696,20,0,7676,True,282,True,incluido,282
+KG,472,472,0,0,472,False,0,False,cantidad CSV menor al umbral,0
+KH,7244,7244,20,0,7224,True,282,True,incluido,282
+KR,2992,2992,20,0,2972,True,282,True,incluido,282
+KZ,3836,3836,20,0,3816,True,282,True,incluido,282
+LA,52,52,0,0,52,False,0,False,cantidad CSV menor al umbral,0
+LB,416,416,0,0,416,False,0,False,cantidad CSV menor al umbral,0
+LI,16,16,0,0,16,False,0,False,cantidad CSV menor al umbral,0
+LK,5320,5320,20,0,5300,True,282,True,incluido,282
+LS,440,440,0,0,440,False,0,False,cantidad CSV menor al umbral,0
+LT,5404,5404,20,0,5384,True,282,True,incluido,282
+LU,500,500,0,0,500,False,0,False,cantidad CSV menor al umbral,0
+LV,5084,5084,20,0,5064,True,282,True,incluido,282
+ME,440,440,0,0,440,False,0,False,cantidad CSV menor al umbral,0
+MK,276,276,0,0,276,False,0,False,cantidad CSV menor al umbral,0
+MN,1284,1284,20,0,1264,True,282,True,incluido,282
+MT,60,60,0,0,60,False,0,False,cantidad CSV menor al umbral,0
+MX,45260,45260,116,0,45144,True,282,True,incluido,282
+MY,9964,9964,24,0,9940,True,282,True,incluido,282
+NA,2860,2860,20,0,2840,True,282,True,incluido,282
+NG,8364,8364,20,0,8344,True,282,True,incluido,282
+NL,6252,6252,20,0,6232,True,282,True,incluido,282
+NO,12704,12704,32,0,12672,True,282,True,incluido,282
+NP,5400,5400,20,0,5380,True,282,True,incluido,282
+NZ,9516,9516,24,0,9492,True,281,True,incluido,281
+OM,8124,8124,20,0,8104,True,281,True,incluido,281
+PA,948,948,0,0,948,False,0,False,cantidad CSV menor al umbral,0
+PE,9000,9000,24,0,8976,True,281,True,incluido,281
+PH,17372,17372,44,0,17328,True,281,True,incluido,281
+PL,37336,37336,96,0,37240,True,281,True,incluido,281
+PR,860,860,0,0,860,False,0,False,cantidad CSV menor al umbral,0
+PS,152,152,0,0,152,False,0,False,cantidad CSV menor al umbral,0
+PT,10516,10516,28,0,10488,True,281,True,incluido,281
+PY,1912,1912,20,0,1892,True,281,True,incluido,281
+QA,596,596,0,0,596,False,0,False,cantidad CSV menor al umbral,0
+RE,68,68,0,0,68,False,0,False,cantidad CSV menor al umbral,0
+RO,12728,12728,32,0,12696,True,281,True,incluido,281
+RS,1396,1396,20,0,1376,True,281,True,incluido,281
+RU,55884,55884,140,0,55744,True,281,True,incluido,281
+RW,560,560,0,0,560,False,0,False,cantidad CSV menor al umbral,0
+SE,22944,22944,60,0,22884,True,281,True,incluido,281
+SG,100,100,0,0,100,False,0,False,cantidad CSV menor al umbral,0
+SI,2868,2868,20,0,2848,True,281,True,incluido,281
+SK,4092,4092,20,0,4072,True,281,True,incluido,281
+SM,4,4,0,0,4,False,0,False,cantidad CSV menor al umbral,0
+SN,1868,1868,20,0,1848,True,281,True,incluido,281
+ST,36,36,0,0,36,False,0,False,cantidad CSV menor al umbral,0
+SZ,292,292,0,0,292,False,0,False,cantidad CSV menor al umbral,0
+TH,52776,52776,132,0,52644,True,281,True,incluido,281
+TN,444,444,0,0,444,False,0,False,cantidad CSV menor al umbral,0
+TR,32672,32672,84,0,32588,True,281,True,incluido,281
+TW,3864,3864,20,0,3844,True,281,True,incluido,281
+UA,5072,5072,20,0,5052,True,281,True,incluido,281
+UG,172,172,0,0,172,False,0,False,cantidad CSV menor al umbral,0
+US,476840,476840,1204,0,475636,True,281,True,incluido,281
+UY,3000,3000,20,0,2980,True,281,True,incluido,281
+VI,44,44,0,0,44,False,0,False,cantidad CSV menor al umbral,0
+VN,17828,17828,44,0,17784,True,281,True,incluido,281
+ZA,23672,23672,60,0,23612,True,281,True,incluido,281
