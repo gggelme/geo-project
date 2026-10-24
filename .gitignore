@@ -18,3 +18,4 @@ __pycache__/
 # Caché de imágenes y resultados de entrenamiento
 .cache/modeling/
 outputs/
+.cache/explorer/
