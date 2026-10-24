@@ -24,6 +24,7 @@ dependencies = [
     "plotly>=7.1.0",
     "pyarrow>=25.0.1",
     "scikit-learn>=1.9.1",
+    "streamlit>=1.66.1",
     "torch",
     "torchvision",
     "tqdm>=4.70.1",
