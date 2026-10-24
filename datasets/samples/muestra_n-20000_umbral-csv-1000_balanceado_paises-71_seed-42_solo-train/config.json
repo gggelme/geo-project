@@ -1,14 +1,21 @@
 {
+  "tipo_muestra": "solo_train",
   "tamano_muestra": 20000,
-  "fraccion_validacion_solicitada": 0.2,
-  "fraccion_validacion_real": 0.1991,
-  "filas_train": 16018,
-  "filas_validation": 3982,
-  "separacion": "aleatoria por panoid dentro de cada pais, porcentaje aproximado",
-  "paises_sin_validacion": [],
+  "filas_train": 20000,
   "archivos_salida": {
-    "train": "data/train.parquet",
-    "validation": "data/validation.parquet"
+    "train": "data/train.parquet"
+  },
+  "validacion_global": {
+    "ruta": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\geo-project\\datasets\\samples\\data\\validation\\validation.parquet",
+    "filas": 5332,
+    "panoramas": 1333,
+    "columnas_exclusion": [
+      "image_id",
+      "panoid"
+    ],
+    "sha256_ids": "4eaa68c47ae2224bc6948dee5828ffccc435c43129056b24e1f3f0c6df94383f",
+    "bytes": 528099677,
+    "mtime_ns": 1792800703702647300
   },
   "min_filas_pais_csv": 1000,
   "csv_conteos": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\geo-project\\src\\notebooks\\preprocessing\\assets\\countries_count.csv",
@@ -272,7 +279,7 @@
     "VN",
     "ZA"
   ],
-  "metodo": "filtro por cantidad CSV + muestreo balanceado",
+  "metodo": "exclusión de validación global por image_id y panoid + muestreo balanceado",
   "unidad": "fila/imagen",
   "ruta_datos": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\world-streetview-500k\\data",
   "patron_archivos": "**/train-*.parquet",
@@ -2637,5 +2644,7 @@
     }
   ],
   "filas_fuente": 1999060,
-  "filas_sin_pais": 7932
+  "filas_sin_pais": 7932,
+  "filas_excluidas_validacion_global": 5332,
+  "filas_ids_invalidos": 0
 }
