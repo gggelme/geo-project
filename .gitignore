@@ -4,9 +4,6 @@
 # Configuración local
 .env
 
-# Ignorar archivos CSV en cualquier carpeta o subcarpeta
-*.csv
-
 # Ignorar cachés y temporales de Python y Jupyter
 __pycache__/
 *.py[cod]
@@ -15,7 +12,9 @@ __pycache__/
 # Matrices preparadas para EDA
 .cache/eda/
 
-# Caché de imágenes y resultados de entrenamiento
+# Caché de imágenes
 .cache/modeling/
-outputs/
 .cache/explorer/
+
+# Checkpoints de entrenamiento (pesados); el resto de outputs/ se versiona
+outputs/**/*.pt
