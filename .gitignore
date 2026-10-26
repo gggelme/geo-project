@@ -18,3 +18,5 @@ __pycache__/
 
 # Checkpoints de entrenamiento (pesados); el resto de outputs/ se versiona
 outputs/**/*.pt
+
+*.parquet
