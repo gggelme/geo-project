@@ -1,0 +1,2049 @@
+{
+  "tipo": "prototipos_kmeans_esferico",
+  "fecha_utc": "2026-11-09T14:44:18+00:00",
+  "notebook": "src/notebooks/preprocessing/clusters_train_completo.ipynb",
+  "archivo_prototipos": "prototipos_train-completo_k70.csv",
+  "sha256_prototipos": "e3fcfd92cb1f3d1dd61806167f73e1249c6a8bc53741e54c576f3151197f693c",
+  "parametros": {
+    "k": 70,
+    "n_init": 5,
+    "max_iter": 100,
+    "tol": 1e-07,
+    "semilla": 42,
+    "distancia": "angular (producto punto sobre la esfera unitaria)",
+    "init": "k-means++ con distancia angular"
+  },
+  "fuente": {
+    "patron_archivos": "**/train-*.parquet",
+    "archivos": 393,
+    "filas_por_archivo": [
+      {
+        "archivo": "train-00000-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00001-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00002-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00003-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00004-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00005-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00006-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00007-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00008-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00009-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00010-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00011-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00012-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00013-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00014-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00015-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00016-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00017-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00018-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00019-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00020-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00021-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00022-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00023-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00024-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00025-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00026-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00027-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00028-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00029-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00030-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00031-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00032-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00033-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00034-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00035-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00036-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00037-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00038-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00039-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00040-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00041-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00042-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00043-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00044-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00045-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00046-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00047-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00048-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00049-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00050-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00051-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00052-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00053-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00054-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00055-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00056-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00057-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00058-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00059-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00060-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00061-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00062-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00063-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00064-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00065-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00066-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00067-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00068-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00069-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00070-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00071-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00072-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00073-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00074-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00075-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00076-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00077-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00078-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00079-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00080-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00081-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00082-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00083-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00084-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00085-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00086-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00087-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00088-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00089-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00090-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00091-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00092-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00093-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00094-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00095-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00096-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00097-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00098-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00099-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00100-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00101-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00102-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00103-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00104-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00105-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00106-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00107-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00108-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00109-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00110-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00111-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00112-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00113-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00114-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00115-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00116-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00117-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00118-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00119-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00120-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00121-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00122-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00123-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00124-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00125-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00126-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00127-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00128-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00129-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00130-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00131-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00132-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00133-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00134-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00135-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00136-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00137-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00138-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00139-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00140-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00141-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00142-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00143-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00144-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00145-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00146-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00147-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00148-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00149-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00150-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00151-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00152-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00153-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00154-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00155-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00156-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00157-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00158-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00159-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00160-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00161-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00162-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00163-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00164-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00165-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00166-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00167-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00168-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00169-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00170-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00171-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00172-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00173-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00174-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00175-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00176-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00177-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00178-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00179-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00180-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00181-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00182-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00183-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00184-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00185-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00186-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00187-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00188-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00189-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00190-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00191-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00192-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00193-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00194-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00195-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00196-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00197-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00198-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00199-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00200-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00201-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00202-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00203-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00204-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00205-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00206-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00207-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00208-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00209-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00210-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00211-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00212-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00213-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00214-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00215-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00216-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00217-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00218-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00219-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00220-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00221-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00222-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00223-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00224-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00225-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00226-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00227-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00228-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00229-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00230-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00231-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00232-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00233-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00234-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00235-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00236-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00237-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00238-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00239-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00240-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00241-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00242-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00243-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00244-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00245-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00246-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00247-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00248-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00249-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00250-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00251-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00252-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00253-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00254-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00255-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00256-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00257-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00258-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00259-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00260-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00261-of-00393.parquet",
+        "filas": 5087
+      },
+      {
+        "archivo": "train-00262-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00263-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00264-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00265-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00266-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00267-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00268-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00269-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00270-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00271-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00272-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00273-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00274-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00275-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00276-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00277-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00278-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00279-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00280-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00281-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00282-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00283-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00284-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00285-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00286-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00287-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00288-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00289-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00290-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00291-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00292-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00293-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00294-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00295-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00296-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00297-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00298-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00299-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00300-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00301-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00302-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00303-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00304-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00305-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00306-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00307-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00308-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00309-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00310-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00311-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00312-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00313-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00314-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00315-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00316-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00317-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00318-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00319-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00320-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00321-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00322-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00323-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00324-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00325-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00326-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00327-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00328-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00329-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00330-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00331-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00332-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00333-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00334-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00335-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00336-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00337-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00338-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00339-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00340-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00341-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00342-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00343-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00344-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00345-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00346-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00347-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00348-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00349-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00350-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00351-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00352-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00353-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00354-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00355-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00356-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00357-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00358-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00359-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00360-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00361-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00362-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00363-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00364-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00365-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00366-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00367-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00368-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00369-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00370-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00371-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00372-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00373-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00374-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00375-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00376-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00377-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00378-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00379-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00380-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00381-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00382-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00383-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00384-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00385-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00386-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00387-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00388-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00389-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00390-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00391-of-00393.parquet",
+        "filas": 5086
+      },
+      {
+        "archivo": "train-00392-of-00393.parquet",
+        "filas": 5086
+      }
+    ]
+  },
+  "deduplicacion": "un punto por panoid (primera fila elegible)",
+  "validacion_excluida": {
+    "archivo": "datasets/samples/data/validation/validation_ids.parquet",
+    "columnas_exclusion": [
+      "image_id",
+      "panoid"
+    ],
+    "imagenes": 5332,
+    "panoramas": 1333,
+    "sha256_ids": "4eaa68c47ae2224bc6948dee5828ffccc435c43129056b24e1f3f0c6df94383f"
+  },
+  "conteos": {
+    "filas_leidas": 1999060,
+    "ids_invalidos": 0,
+    "coordenadas_invalidas": 0,
+    "excluidas_validacion": 5332,
+    "filas_elegibles": 1993728,
+    "panoramas_usados": 498432
+  },
+  "resultado": {
+    "celdas_no_vacias": 70,
+    "similitud_media": 0.9980901181803404,
+    "dist_centroide_km": {
+      "media": 343.9001352520517,
+      "mediana": 318.7801818112938,
+      "max": 2823.177159266718
+    },
+    "panoramas_por_celda": {
+      "min": 33,
+      "max": 19818,
+      "media": 7120.457142857143
+    },
+    "por_celda": [
+      {
+        "ind_cluster": 0,
+        "n_panoramas": 7332,
+        "dist_media_km": 532.299,
+        "dist_max_km": 1612.884
+      },
+      {
+        "ind_cluster": 1,
+        "n_panoramas": 7724,
+        "dist_media_km": 303.293,
+        "dist_max_km": 803.328
+      },
+      {
+        "ind_cluster": 2,
+        "n_panoramas": 16277,
+        "dist_media_km": 301.756,
+        "dist_max_km": 1536.906
+      },
+      {
+        "ind_cluster": 3,
+        "n_panoramas": 3806,
+        "dist_media_km": 502.006,
+        "dist_max_km": 1730.756
+      },
+      {
+        "ind_cluster": 4,
+        "n_panoramas": 11472,
+        "dist_media_km": 254.051,
+        "dist_max_km": 1498.491
+      },
+      {
+        "ind_cluster": 5,
+        "n_panoramas": 15276,
+        "dist_media_km": 272.573,
+        "dist_max_km": 522.441
+      },
+      {
+        "ind_cluster": 6,
+        "n_panoramas": 6986,
+        "dist_media_km": 487.989,
+        "dist_max_km": 1403.18
+      },
+      {
+        "ind_cluster": 7,
+        "n_panoramas": 2242,
+        "dist_media_km": 241.733,
+        "dist_max_km": 834.802
+      },
+      {
+        "ind_cluster": 8,
+        "n_panoramas": 6924,
+        "dist_media_km": 394.248,
+        "dist_max_km": 1065.264
+      },
+      {
+        "ind_cluster": 9,
+        "n_panoramas": 7316,
+        "dist_media_km": 438.082,
+        "dist_max_km": 1444.567
+      },
+      {
+        "ind_cluster": 10,
+        "n_panoramas": 1241,
+        "dist_media_km": 636.871,
+        "dist_max_km": 1339.952
+      },
+      {
+        "ind_cluster": 11,
+        "n_panoramas": 2113,
+        "dist_media_km": 429.112,
+        "dist_max_km": 997.703
+      },
+      {
+        "ind_cluster": 12,
+        "n_panoramas": 9776,
+        "dist_media_km": 504.475,
+        "dist_max_km": 1226.85
+      },
+      {
+        "ind_cluster": 13,
+        "n_panoramas": 13692,
+        "dist_media_km": 288.947,
+        "dist_max_km": 674.037
+      },
+      {
+        "ind_cluster": 14,
+        "n_panoramas": 2281,
+        "dist_media_km": 265.632,
+        "dist_max_km": 1052.207
+      },
+      {
+        "ind_cluster": 15,
+        "n_panoramas": 5863,
+        "dist_media_km": 402.348,
+        "dist_max_km": 2659.632
+      },
+      {
+        "ind_cluster": 16,
+        "n_panoramas": 4114,
+        "dist_media_km": 410.596,
+        "dist_max_km": 858.01
+      },
+      {
+        "ind_cluster": 17,
+        "n_panoramas": 2399,
+        "dist_media_km": 371.832,
+        "dist_max_km": 1008.191
+      },
+      {
+        "ind_cluster": 18,
+        "n_panoramas": 12124,
+        "dist_media_km": 312.41,
+        "dist_max_km": 2060.37
+      },
+      {
+        "ind_cluster": 19,
+        "n_panoramas": 13845,
+        "dist_media_km": 319.211,
+        "dist_max_km": 669.054
+      },
+      {
+        "ind_cluster": 20,
+        "n_panoramas": 5100,
+        "dist_media_km": 360.004,
+        "dist_max_km": 2823.177
+      },
+      {
+        "ind_cluster": 21,
+        "n_panoramas": 12671,
+        "dist_media_km": 297.05,
+        "dist_max_km": 737.919
+      },
+      {
+        "ind_cluster": 22,
+        "n_panoramas": 3910,
+        "dist_media_km": 750.7,
+        "dist_max_km": 1565.202
+      },
+      {
+        "ind_cluster": 23,
+        "n_panoramas": 3915,
+        "dist_media_km": 347.812,
+        "dist_max_km": 834.198
+      },
+      {
+        "ind_cluster": 24,
+        "n_panoramas": 802,
+        "dist_media_km": 584.687,
+        "dist_max_km": 2787.457
+      },
+      {
+        "ind_cluster": 25,
+        "n_panoramas": 2489,
+        "dist_media_km": 203.069,
+        "dist_max_km": 1036.933
+      },
+      {
+        "ind_cluster": 26,
+        "n_panoramas": 3919,
+        "dist_media_km": 342.323,
+        "dist_max_km": 757.193
+      },
+      {
+        "ind_cluster": 27,
+        "n_panoramas": 11802,
+        "dist_media_km": 402.98,
+        "dist_max_km": 1368.861
+      },
+      {
+        "ind_cluster": 28,
+        "n_panoramas": 6375,
+        "dist_media_km": 334.742,
+        "dist_max_km": 748.623
+      },
+      {
+        "ind_cluster": 29,
+        "n_panoramas": 6575,
+        "dist_media_km": 259.109,
+        "dist_max_km": 659.922
+      },
+      {
+        "ind_cluster": 30,
+        "n_panoramas": 18422,
+        "dist_media_km": 309.404,
+        "dist_max_km": 918.495
+      },
+      {
+        "ind_cluster": 31,
+        "n_panoramas": 5920,
+        "dist_media_km": 362.892,
+        "dist_max_km": 1165.181
+      },
+      {
+        "ind_cluster": 32,
+        "n_panoramas": 3242,
+        "dist_media_km": 475.648,
+        "dist_max_km": 1120.363
+      },
+      {
+        "ind_cluster": 33,
+        "n_panoramas": 9516,
+        "dist_media_km": 360.444,
+        "dist_max_km": 2163.382
+      },
+      {
+        "ind_cluster": 34,
+        "n_panoramas": 2412,
+        "dist_media_km": 369.593,
+        "dist_max_km": 854.891
+      },
+      {
+        "ind_cluster": 35,
+        "n_panoramas": 3017,
+        "dist_media_km": 417.188,
+        "dist_max_km": 1174.156
+      },
+      {
+        "ind_cluster": 36,
+        "n_panoramas": 11122,
+        "dist_media_km": 332.901,
+        "dist_max_km": 1032.391
+      },
+      {
+        "ind_cluster": 37,
+        "n_panoramas": 2518,
+        "dist_media_km": 521.369,
+        "dist_max_km": 1013.306
+      },
+      {
+        "ind_cluster": 38,
+        "n_panoramas": 3682,
+        "dist_media_km": 372.121,
+        "dist_max_km": 2436.612
+      },
+      {
+        "ind_cluster": 39,
+        "n_panoramas": 11138,
+        "dist_media_km": 288.746,
+        "dist_max_km": 862.974
+      },
+      {
+        "ind_cluster": 40,
+        "n_panoramas": 2353,
+        "dist_media_km": 470.282,
+        "dist_max_km": 947.643
+      },
+      {
+        "ind_cluster": 41,
+        "n_panoramas": 6852,
+        "dist_media_km": 352.495,
+        "dist_max_km": 1167.135
+      },
+      {
+        "ind_cluster": 42,
+        "n_panoramas": 277,
+        "dist_media_km": 174.236,
+        "dist_max_km": 852.434
+      },
+      {
+        "ind_cluster": 43,
+        "n_panoramas": 1119,
+        "dist_media_km": 650.29,
+        "dist_max_km": 1172.232
+      },
+      {
+        "ind_cluster": 44,
+        "n_panoramas": 187,
+        "dist_media_km": 157.154,
+        "dist_max_km": 350.96
+      },
+      {
+        "ind_cluster": 45,
+        "n_panoramas": 1639,
+        "dist_media_km": 428.258,
+        "dist_max_km": 1163.547
+      },
+      {
+        "ind_cluster": 46,
+        "n_panoramas": 11132,
+        "dist_media_km": 267.695,
+        "dist_max_km": 786.16
+      },
+      {
+        "ind_cluster": 47,
+        "n_panoramas": 1638,
+        "dist_media_km": 806.927,
+        "dist_max_km": 2557.895
+      },
+      {
+        "ind_cluster": 48,
+        "n_panoramas": 7499,
+        "dist_media_km": 421.975,
+        "dist_max_km": 955.687
+      },
+      {
+        "ind_cluster": 49,
+        "n_panoramas": 17478,
+        "dist_media_km": 346.413,
+        "dist_max_km": 1014.161
+      },
+      {
+        "ind_cluster": 50,
+        "n_panoramas": 9843,
+        "dist_media_km": 376.027,
+        "dist_max_km": 905.649
+      },
+      {
+        "ind_cluster": 51,
+        "n_panoramas": 13415,
+        "dist_media_km": 276.634,
+        "dist_max_km": 727.984
+      },
+      {
+        "ind_cluster": 52,
+        "n_panoramas": 9802,
+        "dist_media_km": 260.717,
+        "dist_max_km": 2065.412
+      },
+      {
+        "ind_cluster": 53,
+        "n_panoramas": 10977,
+        "dist_media_km": 326.739,
+        "dist_max_km": 2251.998
+      },
+      {
+        "ind_cluster": 54,
+        "n_panoramas": 12465,
+        "dist_media_km": 259.582,
+        "dist_max_km": 549.441
+      },
+      {
+        "ind_cluster": 55,
+        "n_panoramas": 13602,
+        "dist_media_km": 311.97,
+        "dist_max_km": 707.194
+      },
+      {
+        "ind_cluster": 56,
+        "n_panoramas": 8641,
+        "dist_media_km": 298.225,
+        "dist_max_km": 2045.638
+      },
+      {
+        "ind_cluster": 57,
+        "n_panoramas": 5948,
+        "dist_media_km": 356.915,
+        "dist_max_km": 866.083
+      },
+      {
+        "ind_cluster": 58,
+        "n_panoramas": 6871,
+        "dist_media_km": 292.273,
+        "dist_max_km": 2498.403
+      },
+      {
+        "ind_cluster": 59,
+        "n_panoramas": 2932,
+        "dist_media_km": 345.882,
+        "dist_max_km": 721.689
+      },
+      {
+        "ind_cluster": 60,
+        "n_panoramas": 7591,
+        "dist_media_km": 478.372,
+        "dist_max_km": 1171.693
+      },
+      {
+        "ind_cluster": 61,
+        "n_panoramas": 3701,
+        "dist_media_km": 366.275,
+        "dist_max_km": 1157.326
+      },
+      {
+        "ind_cluster": 62,
+        "n_panoramas": 439,
+        "dist_media_km": 447.234,
+        "dist_max_km": 1267.369
+      },
+      {
+        "ind_cluster": 63,
+        "n_panoramas": 17647,
+        "dist_media_km": 387.768,
+        "dist_max_km": 1215.381
+      },
+      {
+        "ind_cluster": 64,
+        "n_panoramas": 2372,
+        "dist_media_km": 297.429,
+        "dist_max_km": 701.73
+      },
+      {
+        "ind_cluster": 65,
+        "n_panoramas": 19818,
+        "dist_media_km": 275.901,
+        "dist_max_km": 731.354
+      },
+      {
+        "ind_cluster": 66,
+        "n_panoramas": 5056,
+        "dist_media_km": 306.815,
+        "dist_max_km": 761.65
+      },
+      {
+        "ind_cluster": 67,
+        "n_panoramas": 681,
+        "dist_media_km": 687.746,
+        "dist_max_km": 1164.2
+      },
+      {
+        "ind_cluster": 68,
+        "n_panoramas": 33,
+        "dist_media_km": 459.134,
+        "dist_max_km": 1014.376
+      },
+      {
+        "ind_cluster": 69,
+        "n_panoramas": 15074,
+        "dist_media_km": 273.487,
+        "dist_max_km": 505.105
+      }
+    ]
+  }
+}
