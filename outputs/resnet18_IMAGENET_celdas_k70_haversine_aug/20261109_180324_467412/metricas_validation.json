@@ -1,0 +1,13 @@
+{
+  "n_validation": 5332,
+  "loss_validation": 2.2546989917755127,
+  "loss_haversine_validation": 2.4799325466156006,
+  "accuracy_top1": 0.3283945986496624,
+  "accuracy_top5": 0.7700675168792198,
+  "error_medio_km": 2979.8251534077804,
+  "error_mediano_km": 888.1682661360722,
+  "error_medio_km_cota_celdas": 361.1155042776493,
+  "accuracy_top1_mbr": 0.309264816204051,
+  "error_medio_km_mbr": 2778.8144803313203,
+  "error_mediano_km_mbr": 879.2668671680713
+}
