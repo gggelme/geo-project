@@ -1,0 +1,49 @@
+{
+  "miembros": {
+    "H42": "outputs/resnet18_IMAGENET_celdas_k70_haversine_aug/20261109_180324_467412",
+    "H105": "outputs/resnet18_IMAGENET_celdas_k70_haversine_aug/20261112_134526_509022",
+    "F42": "outputs/resnet18_IMAGENET_celdas_k70_haversine_aug_focal/20261111_122523_860807",
+    "S42": "outputs/resnet18_IMAGENET_celdas_k70_haversine_aug_sam/20261112_114257_997479"
+  },
+  "checkpoint": "mejor_resnet18_celdas.pt",
+  "ensambles": {
+    "H42+H105": [
+      "H42",
+      "H105"
+    ],
+    "H42+F42": [
+      "H42",
+      "F42"
+    ],
+    "H105+F42": [
+      "H105",
+      "F42"
+    ],
+    "H42+S42": [
+      "H42",
+      "S42"
+    ],
+    "H105+S42": [
+      "H105",
+      "S42"
+    ],
+    "F42+S42": [
+      "F42",
+      "S42"
+    ],
+    "H42+F42+S42": [
+      "H42",
+      "F42",
+      "S42"
+    ],
+    "todos (4)": [
+      "H42",
+      "H105",
+      "F42",
+      "S42"
+    ]
+  },
+  "referencia": "S42",
+  "b_bootstrap": 2000,
+  "semilla": 42
+}
