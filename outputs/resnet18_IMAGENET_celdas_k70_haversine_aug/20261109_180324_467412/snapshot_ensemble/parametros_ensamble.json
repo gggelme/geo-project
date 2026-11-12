@@ -1,0 +1,11 @@
+{
+  "checkpoint_base": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\geo-project\\outputs\\resnet18_IMAGENET_celdas_k70_haversine_aug\\20261109_180324_467412\\mejor_resnet18_celdas.pt",
+  "ciclos": 4,
+  "epocas_por_ciclo": 2,
+  "lr_max_cabeza": 0.001,
+  "lr_max_backbone": 0.0001,
+  "incluir_base": true,
+  "submuestra_train": null,
+  "batch_size": 32,
+  "semilla": 42
+}

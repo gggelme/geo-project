@@ -1,0 +1,38 @@
+{
+  "checkpoint": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\geo-project\\outputs\\resnet18_IMAGENET_celdas_k70_haversine_aug\\20261109_180324_467412\\mejor_resnet18_celdas.pt",
+  "T_opt": 1.3853216408553926,
+  "criterio": "minimizar NLL (CE dura) en calibración",
+  "fraccion_calibracion": 0.5,
+  "particion": "por panoid",
+  "semilla": 42,
+  "n_calibracion": 2664,
+  "n_evaluacion": 2668,
+  "evaluacion_T1": {
+    "T": 1.0,
+    "nll": 2.19614731016925,
+    "ece": 0.06463224006329242,
+    "brier": 0.8022518277861025,
+    "confianza_media": 0.3982889373707287,
+    "accuracy_top1": 0.335832083958021,
+    "accuracy_top5": 0.7792353823088456,
+    "error_medio_km": 2830.900918272563,
+    "error_mediano_km": 860.0372529999158,
+    "accuracy_top1_mbr": 0.3073463268365817,
+    "error_medio_km_mbr": 2678.089396077927,
+    "error_mediano_km_mbr": 864.8148455768203
+  },
+  "evaluacion_Topt": {
+    "T": 1.3853216408553926,
+    "nll": 2.153731652738705,
+    "ece": 0.036572642176726074,
+    "brier": 0.7943589110460079,
+    "confianza_media": 0.3065950975611287,
+    "accuracy_top1": 0.335832083958021,
+    "accuracy_top5": 0.7792353823088456,
+    "error_medio_km": 2830.900918272563,
+    "error_mediano_km": 860.0372529999158,
+    "accuracy_top1_mbr": 0.2841079460269865,
+    "error_medio_km_mbr": 2673.612101986694,
+    "error_mediano_km_mbr": 882.2716906844604
+  }
+}

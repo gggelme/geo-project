@@ -1,0 +1,12 @@
+{
+  "accuracy_top1": 0.3257689422355589,
+  "balanced_accuracy": 0.3725486389900082,
+  "precision_macro": 0.3319188738471266,
+  "recall_macro": 0.3725486389900082,
+  "f1_macro": 0.33785962050666424,
+  "f1_ponderado": 0.32583729434900016,
+  "celdas_evaluadas": 66.0,
+  "cohen_kappa": 0.31243379384527925,
+  "baseline_celda_mayoritaria": 0.0146,
+  "baseline_azar": 0.014285714285714285
+}
