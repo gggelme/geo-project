@@ -1,0 +1,155 @@
+{
+  "tipo": "splits_por_shard",
+  "fecha_utc": "2026-11-13T16:49:07+00:00",
+  "script": "scripts/armar_splits.py",
+  "manifest": "C:\\Users\\jurad\\Documents\\facultad\\rrnn2\\tp-final\\geo-project\\datasets\\manifest_2m\\manifest.parquet",
+  "shards_val": [
+    381,
+    382,
+    383,
+    384
+  ],
+  "shards_test": [
+    385,
+    386,
+    387,
+    388,
+    389,
+    390,
+    391,
+    392
+  ],
+  "regla_panoramas_partidos": "si cruzan splits, quedan solo en train",
+  "panoramas_partidos": 262,
+  "panoramas_partidos_entre_splits": 0,
+  "panoramas_en_shards_no_consecutivos": 0,
+  "resumen": {
+    "train": {
+      "imagenes": 1932636,
+      "panoramas": 483183,
+      "paises": 117,
+      "celdas": 70,
+      "tvd_country_code": 0.0008,
+      "tvd_ind_cluster": 0.0009
+    },
+    "val": {
+      "imagenes": 20344,
+      "panoramas": 5086,
+      "paises": 84,
+      "celdas": 69,
+      "tvd_country_code": 0.0423,
+      "tvd_country_code_azar_p50": 0.0373,
+      "tvd_country_code_azar_p95": 0.0454,
+      "tvd_country_code_percentil_vs_azar": 85.0,
+      "tvd_ind_cluster": 0.0465,
+      "tvd_ind_cluster_azar_p50": 0.043,
+      "tvd_ind_cluster_azar_p95": 0.0509,
+      "tvd_ind_cluster_percentil_vs_azar": 77.0
+    },
+    "test": {
+      "imagenes": 40687,
+      "panoramas": 10172,
+      "paises": 92,
+      "celdas": 68,
+      "tvd_country_code": 0.0253,
+      "tvd_country_code_azar_p50": 0.0267,
+      "tvd_country_code_azar_p95": 0.0312,
+      "tvd_country_code_percentil_vs_azar": 30.5,
+      "tvd_ind_cluster": 0.0319,
+      "tvd_ind_cluster_azar_p50": 0.0298,
+      "tvd_ind_cluster_azar_p95": 0.0348,
+      "tvd_ind_cluster_percentil_vs_azar": 76.5
+    },
+    "test_hf": {
+      "imagenes": 2995,
+      "panoramas": 2995,
+      "paises": 88,
+      "celdas": 70,
+      "tvd_country_code": 0.1196,
+      "tvd_country_code_azar_p50": 0.0485,
+      "tvd_country_code_azar_p95": 0.0572,
+      "tvd_country_code_percentil_vs_azar": 100.0,
+      "tvd_ind_cluster": 0.1182,
+      "tvd_ind_cluster_azar_p50": 0.0556,
+      "tvd_ind_cluster_azar_p95": 0.064,
+      "tvd_ind_cluster_percentil_vs_azar": 100.0
+    }
+  },
+  "reglas": {
+    "train": {
+      "archivos": "381 shards: todos los train-*.parquet salvo 381-384 (val) y 385-392 (test)",
+      "excluir_por_motivo": {
+        "validacion_global": 5181,
+        "magenta": 123,
+        "uniforme": 88
+      }
+    },
+    "val": {
+      "archivos": [
+        "train-00381-of-00393.parquet",
+        "train-00382-of-00393.parquet",
+        "train-00383-of-00393.parquet",
+        "train-00384-of-00393.parquet"
+      ],
+      "excluir_por_motivo": {},
+      "excluir_filas": []
+    },
+    "test": {
+      "archivos": [
+        "train-00385-of-00393.parquet",
+        "train-00386-of-00393.parquet",
+        "train-00387-of-00393.parquet",
+        "train-00388-of-00393.parquet",
+        "train-00389-of-00393.parquet",
+        "train-00390-of-00393.parquet",
+        "train-00391-of-00393.parquet",
+        "train-00392-of-00393.parquet"
+      ],
+      "excluir_por_motivo": {
+        "uniforme": 1
+      },
+      "excluir_filas": [
+        {
+          "archivo": "train-00387-of-00393.parquet",
+          "fila": 3050,
+          "excluir": "uniforme"
+        }
+      ]
+    },
+    "test_hf": {
+      "archivos": [
+        "val-00000-of-00001.parquet"
+      ],
+      "excluir_por_motivo": {
+        "fuga_con_train": 5
+      },
+      "excluir_filas": [
+        {
+          "archivo": "val-00000-of-00001.parquet",
+          "fila": 121,
+          "excluir": "fuga_con_train"
+        },
+        {
+          "archivo": "val-00000-of-00001.parquet",
+          "fila": 239,
+          "excluir": "fuga_con_train"
+        },
+        {
+          "archivo": "val-00000-of-00001.parquet",
+          "fila": 1231,
+          "excluir": "fuga_con_train"
+        },
+        {
+          "archivo": "val-00000-of-00001.parquet",
+          "fila": 1559,
+          "excluir": "fuga_con_train"
+        },
+        {
+          "archivo": "val-00000-of-00001.parquet",
+          "fila": 1831,
+          "excluir": "fuga_con_train"
+        }
+      ]
+    }
+  }
+}
