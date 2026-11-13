@@ -43,6 +43,8 @@ def predecir(ruta_pt, ruta_parquet, device="cpu", batch_size=64, progreso=None):
     n = pq.ParquetFile(ruta_parquet).metadata.num_rows
     loader = DataLoader(_Imagenes(ruta_parquet, n, transform), batch_size=batch_size,
                         shuffle=False, num_workers=0)
+    # Sin autocast si se entrenó sin AMP: en GPUs chicas el forward en fp16 puede dar NaN.
+    amp = device == "cuda" and bool(config.get("amp", True))
     capturado = {}
     gancho = capa_features(modelo, config).register_forward_hook(
         lambda m, i, o: capturado.__setitem__("f", o.flatten(1)))
@@ -50,7 +52,7 @@ def predecir(ruta_pt, ruta_parquet, device="cpu", batch_size=64, progreso=None):
     try:
         with torch.inference_mode():
             for k, x in enumerate(tqdm(loader, desc="Inferencia")):
-                with torch.autocast(device_type=device, enabled=device == "cuda"):
+                with torch.autocast(device_type=device, enabled=amp):
                     logits = modelo(x.to(device))
                 probs.append(torch.softmax(logits.float(), 1).cpu().numpy().astype(np.float16))
                 feats.append(capturado["f"].float().cpu().numpy().astype(np.float16))

@@ -5,8 +5,7 @@ import streamlit as st
 import comun
 from explorer.core.metricas import resumen_por_pais
 
-st.set_page_config(page_title="Países", layout="wide")
-ctx = comun.contexto()
+ctx = comun.ctx()
 df, config = ctx["df"], ctx["config"]
 resumen = resumen_por_pais(df, config)
 
@@ -57,7 +56,7 @@ with der:
 b1, b2, _ = st.columns([1, 1, 2])
 if b1.button(f"Ver imágenes reales de {pais}"):
     st.session_state["filtro_galeria"] = {"real": [pais], "pred": [], "acierto": "Todos"}
-    st.switch_page("pages/3_Galeria.py")
+    st.switch_page("vistas/3_Galeria.py")
 if b2.button(f"Ver imágenes predichas como {pais}"):
     st.session_state["filtro_galeria"] = {"real": [], "pred": [pais], "acierto": "Todos"}
-    st.switch_page("pages/3_Galeria.py")
+    st.switch_page("vistas/3_Galeria.py")
