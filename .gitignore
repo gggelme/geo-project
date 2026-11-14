@@ -20,3 +20,5 @@ __pycache__/
 outputs/**/*.pt
 
 *.parquet
+# Logits de la evaluación final (pesados; se regeneran desde los snapshots)
+outputs/**/logits/*.npy

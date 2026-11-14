@@ -14,8 +14,7 @@
   "paciencia_plateau": 2,
   "paciencia": 4,
   "variantes_ciclos": [
-    {"nombre": "corto", "ciclos": 4, "fraccion": 0.15},
-    {"nombre": "largo", "ciclos": 3, "fraccion": 0.40}
+    {"nombre": "corto", "ciclos": 4, "fraccion": 0.15}
   ],
   "num_workers": 4,
   "minutos_checkpoint": 15,
