@@ -9,7 +9,8 @@ from pathlib import Path
 # Campos que se pueden cambiar entre sesiones sin invalidar la corrida (no cambian qué se entrena).
 CAMPOS_SIN_HASH = {"carpeta_corrida", "num_workers", "minutos_checkpoint", "max_horas", "pasos_log",
                    "prueba_nan_en_paso", "prueba_corrupta_cada", "fuente", "datos_local", "hf_cache",
-                   "borrar_shards_hf", "val_global", "manifest", "splits", "prototipos"}
+                   "borrar_shards_hf", "val_global", "manifest", "splits", "prototipos",
+                   "optimizaciones_velocidad", "channels_last"}
 
 
 @dataclass
@@ -61,6 +62,13 @@ class Config:
         {"nombre": "corto", "ciclos": 4, "fraccion": 0.15},
         {"nombre": "largo", "ciclos": 3, "fraccion": 0.40},
     ])
+
+    # Velocidad sin cambiar la receta: cudnn.benchmark, AdamW fusionado e imágenes en uint8 normalizadas en la
+    # GPU (mismas cuentas que ToTensor + Normalize). Se puede cambiar entre sesiones.
+    optimizaciones_velocidad: bool = True
+    # channels_last aparte y apagado: en fp32 sin tensor cores (GTX 1650) hizo el entrenamiento ~7x más lento.
+    # Solo conviene con AMP o TF32 en GPUs que lo aprovechen; medirlo antes de activarlo.
+    channels_last: bool = False
 
     # Robustez y operación.
     num_workers: int = 3

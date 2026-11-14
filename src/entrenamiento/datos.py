@@ -24,17 +24,21 @@ from torch.utils.data import IterableDataset, get_worker_info
 from torchvision import models, transforms
 
 
-def transformaciones(tamano: int) -> tuple[transforms.Compose, transforms.Compose]:
-    # Las mismas que en los notebooks de 20k (deben coincidir con config de S42).
-    pesos = models.ResNet18_Weights.IMAGENET1K_V1.transforms()
-    normalizar = transforms.Normalize(pesos.mean, pesos.std)
+MEDIA_IMAGENET = models.ResNet18_Weights.IMAGENET1K_V1.transforms().mean
+STD_IMAGENET = models.ResNet18_Weights.IMAGENET1K_V1.transforms().std
+
+
+def transformaciones(tamano: int, uint8: bool = False) -> tuple[transforms.Compose, transforms.Compose]:
+    # Las mismas que en los notebooks de 20k (deben coincidir con config de S42). Con uint8=True terminan en un
+    # tensor uint8 (4 veces menos bytes entre procesos y hacia la GPU) y ToTensor + Normalize se hacen en la GPU.
+    final = [transforms.PILToTensor()] if uint8 else [transforms.ToTensor(),
+                                                      transforms.Normalize(MEDIA_IMAGENET, STD_IMAGENET)]
     train = transforms.Compose([
         transforms.RandomResizedCrop(tamano, scale=(0.6, 1.0), ratio=(0.9, 1.1)),
         transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0),
-        transforms.ToTensor(), normalizar,
+        *final,
     ])
-    val = transforms.Compose([transforms.Resize(tamano), transforms.CenterCrop(tamano), transforms.ToTensor(),
-                              normalizar])
+    val = transforms.Compose([transforms.Resize(tamano), transforms.CenterCrop(tamano), *final])
     return train, val
 
 
@@ -84,9 +88,11 @@ def leer_filas(ruta: Path, filas: np.ndarray, ids: np.ndarray):
 
 class FlujoMuestras(IterableDataset):
     def __init__(self, tareas: list[tuple[str, np.ndarray, np.ndarray]], lector: Lector, transform,
-                 buffer: int = 0, semilla: int = 0, tamano: int = 224, corrupta_cada: int | None = None):
+                 buffer: int = 0, semilla: int = 0, tamano: int = 224, corrupta_cada: int | None = None,
+                 uint8: bool = False):
         self.tareas, self.lector, self.transform = tareas, lector, transform
         self.buffer, self.semilla, self.tamano, self.corrupta_cada = buffer, semilla, tamano, corrupta_cada
+        self.tipo_vacio = torch.uint8 if uint8 else torch.float32  # Tensor de relleno si la imagen falla.
 
     def _procesar(self, datos: bytes, i: int):
         try:
@@ -95,7 +101,7 @@ class FlujoMuestras(IterableDataset):
             with Image.open(io.BytesIO(datos)) as im:
                 return self.transform(im.convert("RGB")), i, True
         except Exception:  # noqa: BLE001 — la imagen se descarta y se cuenta en el loop principal.
-            return torch.zeros(3, self.tamano, self.tamano), i, False
+            return torch.zeros(3, self.tamano, self.tamano, dtype=self.tipo_vacio), i, False
 
     def _descargas(self, mias):
         # Con fuente HF, baja el próximo archivo mientras se procesa el actual.
