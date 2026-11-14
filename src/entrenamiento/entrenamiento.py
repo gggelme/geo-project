@@ -264,6 +264,7 @@ class Corrida:
         self.lector_eval = Lector(cfg.fuente, resolver(cfg.datos_local), cfg.hf_repo, cfg.hf_revision,
                                   cfg.hf_subcarpeta, cfg.hf_cache, borrar=False)
         self.rapido = cfg.optimizaciones_velocidad and self.device.type == "cuda"
+        self.canales_al_final = cfg.channels_last and self.device.type == "cuda"
         if self.rapido:
             torch.backends.cudnn.benchmark = True  # Tamaño de entrada fijo: elige el algoritmo más rápido.
         self.media_gpu = torch.tensor(MEDIA_IMAGENET, device=self.device).view(1, 3, 1, 1) * 255
@@ -323,14 +324,14 @@ class Corrida:
 
     def _a_dispositivo(self, modelo: nn.Module) -> nn.Module:
         modelo = modelo.to(self.device)
-        return modelo.to(memory_format=torch.channels_last) if self.rapido else modelo
+        return modelo.to(memory_format=torch.channels_last) if self.canales_al_final else modelo
 
     def _preparar(self, imagenes: torch.Tensor) -> torch.Tensor:
         """Imágenes del DataLoader -> entrada de la red en la GPU. En uint8: /255 y normalización acá."""
         x = imagenes.to(self.device, non_blocking=True)
         if x.dtype == torch.uint8:
             x = (x.float() - self.media_gpu) / self.std_gpu
-        return x.contiguous(memory_format=torch.channels_last) if self.rapido else x
+        return x.contiguous(memory_format=torch.channels_last) if self.canales_al_final else x
 
     def _nuevo_optimizador(self, escala_lr: float = 1.0):
         m = self.modelo
