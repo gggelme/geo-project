@@ -1,0 +1,21 @@
+{
+  "carpeta_corrida": "outputs/entrenamiento_2m/humo",
+  "fuente": "local",
+  "shards_train": "0-1",
+  "tamano_ronda": 640,
+  "buffer_mezcla": 256,
+  "batch_size": 16,
+  "rondas_cabeza": 1,
+  "paciencia_plateau": 1,
+  "paciencia": 2,
+  "max_rondas_base": 4,
+  "variantes_ciclos": [
+    {"nombre": "corto", "ciclos": 2, "fraccion": 0.5},
+    {"nombre": "largo", "ciclos": 1, "fraccion": 1.0}
+  ],
+  "limite_val": 40,
+  "num_workers": 2,
+  "minutos_checkpoint": 1,
+  "pasos_log": 10,
+  "semilla": 42
+}
