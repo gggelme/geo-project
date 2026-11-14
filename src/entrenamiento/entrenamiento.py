@@ -36,7 +36,8 @@ from torch.utils.data import DataLoader
 from torchvision import models
 
 from .config import Config
-from .datos import FlujoMuestras, Lector, ram_usada_gb, tareas_por_archivo, transformaciones
+from .datos import (MEDIA_IMAGENET, STD_IMAGENET, FlujoMuestras, Lector, ram_usada_gb, tareas_por_archivo,
+                    transformaciones)
 from .sampler import Planificador
 
 RADIO_TIERRA_KM = 6371.0
@@ -97,7 +98,9 @@ class SAM:
         norma = torch.norm(torch.stack([p.grad.norm(2) for p in params]), 2)
         escala = self.rho / (norma + 1e-12)
         for p in params:
-            e = p.grad * escala
+            # Con gradiente no finito la perturbación queda en 0 (los pesos no se ensucian); el paso se descarta
+            # después, al chequear las dos losses juntas (una sola sincronización con la GPU por paso).
+            e = torch.nan_to_num(p.grad * escala, nan=0.0, posinf=0.0, neginf=0.0)
             p.add_(e)
             self.perturbaciones[p] = e
         self.base.zero_grad(set_to_none=True)
@@ -260,7 +263,12 @@ class Corrida:
         # Los parquets de validación se usan en cada ronda: con fuente HF se bajan una vez y no se borran.
         self.lector_eval = Lector(cfg.fuente, resolver(cfg.datos_local), cfg.hf_repo, cfg.hf_revision,
                                   cfg.hf_subcarpeta, cfg.hf_cache, borrar=False)
-        self.transform_train, self.transform_val = transformaciones(cfg.tamano_imagen)
+        self.rapido = cfg.optimizaciones_velocidad and self.device.type == "cuda"
+        if self.rapido:
+            torch.backends.cudnn.benchmark = True  # Tamaño de entrada fijo: elige el algoritmo más rápido.
+        self.media_gpu = torch.tensor(MEDIA_IMAGENET, device=self.device).view(1, 3, 1, 1) * 255
+        self.std_gpu = torch.tensor(STD_IMAGENET, device=self.device).view(1, 3, 1, 1) * 255
+        self.transform_train, self.transform_val = transformaciones(cfg.tamano_imagen, uint8=self.rapido)
         tr = self.tablas["train"]
         _, self.pano_idx = np.unique(tr.panoid, return_inverse=True)
         n_panos = self.pano_idx.max() + 1
@@ -270,9 +278,13 @@ class Corrida:
         # Tamaño de cada celda en train (imágenes), para monitorear sobreajuste en celdas chicas.
         imgs_celda = np.bincount(tr.celda, minlength=self.num_clases)
         self.grupo_celda = np.digitize(imgs_celda, np.quantile(imgs_celda, [1 / 3, 2 / 3]))  # 0 chica, 2 grande
+        self.grupo_celda_t = torch.as_tensor(self.grupo_celda, device=self.device)
+        self.lat_t = torch.tensor(tr.lat, dtype=torch.float32, device=self.device)
+        self.lon_t = torch.tensor(tr.lon, dtype=torch.float32, device=self.device)
+        self.celda_t = torch.as_tensor(tr.celda, device=self.device)
         self.planificador = self._nuevo_planificador()
 
-        self.modelo = construir_modelo(self.num_clases, cfg.dropout).to(self.device)
+        self.modelo = self._a_dispositivo(construir_modelo(self.num_clases, cfg.dropout))
         self.optimizador = self._nuevo_optimizador()
         self.scheduler = self._nuevo_plateau()
         self.estado = {"fase": "base", "ronda_base": 0, "ronda_en_curso": None, "paso": 0,
@@ -309,13 +321,24 @@ class Corrida:
         return Planificador(self.celda_pano, self.inicio_filas, self.n_filas, self.num_clases,
                             self.cfg.tamano_ronda, self.cfg.semilla, self.cfg.r_max)
 
+    def _a_dispositivo(self, modelo: nn.Module) -> nn.Module:
+        modelo = modelo.to(self.device)
+        return modelo.to(memory_format=torch.channels_last) if self.rapido else modelo
+
+    def _preparar(self, imagenes: torch.Tensor) -> torch.Tensor:
+        """Imágenes del DataLoader -> entrada de la red en la GPU. En uint8: /255 y normalización acá."""
+        x = imagenes.to(self.device, non_blocking=True)
+        if x.dtype == torch.uint8:
+            x = (x.float() - self.media_gpu) / self.std_gpu
+        return x.contiguous(memory_format=torch.channels_last) if self.rapido else x
+
     def _nuevo_optimizador(self, escala_lr: float = 1.0):
         m = self.modelo
         return torch.optim.AdamW([
             {"params": m.fc.parameters(), "lr": self.cfg.lr_cabeza * escala_lr},
             {"params": [p for n, p in m.named_parameters() if not n.startswith("fc.")],
              "lr": self.cfg.lr_backbone * escala_lr},
-        ], weight_decay=self.cfg.weight_decay)
+        ], weight_decay=self.cfg.weight_decay, fused=self.rapido)
 
     def _nuevo_plateau(self):
         return torch.optim.lr_scheduler.ReduceLROnPlateau(self.optimizador, factor=self.cfg.factor_plateau,
@@ -348,6 +371,7 @@ class Corrida:
 
     # ---------------------------------------------------------- checkpoints
     def guardar(self, motivo: str):
+        self._volcar_acumuladores()  # Que el checkpoint tenga las métricas de la ronda al día.
         estado_rng = {"python": random.getstate(), "numpy": np.random.get_state(), "torch": torch.get_rng_state(),
                       "cuda": torch.cuda.get_rng_state_all() if torch.cuda.is_available() else None}
         guardar_atomico({"modelo": self.modelo.state_dict(), "optimizador": self.optimizador.state_dict(),
@@ -428,11 +452,11 @@ class Corrida:
                                     filas[pendientes], orden)
         flujo = FlujoMuestras(tareas, self.lector, self.transform_train, cfg.buffer_mezcla,
                               semilla=cfg.semilla * 100_000 + numero_plan, tamano=cfg.tamano_imagen,
-                              corrupta_cada=cfg.prueba_corrupta_cada)
+                              corrupta_cada=cfg.prueba_corrupta_cada, uint8=self.rapido)
         loader = DataLoader(flujo, batch_size=cfg.batch_size, num_workers=min(cfg.num_workers, len(tareas)),
                             pin_memory=self.device.type == "cuda")
-        lat_t, lon_t = torch.tensor(tr.lat, dtype=torch.float32), torch.tensor(tr.lon, dtype=torch.float32)
         sam = SAM(self.optimizador, cfg.rho_sam)
+        self._acum = self._acumuladores_vacios()
         self.modelo.train()
         if self.backbone_congelado:
             for nombre, modulo in self.modelo.named_children():
@@ -455,45 +479,43 @@ class Corrida:
                 if len(ids) < 2:
                     t_ultimo = time.time()
                     continue
-            imagenes = imagenes.to(self.device, non_blocking=True)
-            dist = haversine_torch(lat_t[ids], lon_t[ids], self.proto_t[:, 0].cpu(), self.proto_t[:, 1].cpu())
-            dist = dist.to(self.device, non_blocking=True)
-            celdas = torch.as_tensor(tr.celda[ids.numpy()], device=self.device)
+            imagenes = self._preparar(imagenes)
+            ids_gpu = ids.to(self.device, non_blocking=True)
+            dist = haversine_torch(self.lat_t[ids_gpu], self.lon_t[ids_gpu], self.proto_t[:, 0], self.proto_t[:, 1])
+            celdas = self.celda_t[ids_gpu]
             self.estado["paso"] += 1
             logits = self.modelo(imagenes)
             loss = loss_haversine(logits, dist, cfg.tau_km, cfg.gamma_focal)
             if cfg.prueba_nan_en_paso and self.estado["paso"] == cfg.prueba_nan_en_paso:
                 loss = loss * float("nan")
-            if not torch.isfinite(loss):
-                self._loss_no_finita()
-                t_ultimo = time.time()
-                continue
             loss.backward()
-            sam.primer_paso()
+            sam.primer_paso()  # Con gradiente no finito no perturba (ver SAM).
             with bn_sin_actualizar(self.modelo):
                 loss_perturbada = loss_haversine(self.modelo(imagenes), dist, cfg.tau_km, cfg.gamma_focal)
-            if not torch.isfinite(loss_perturbada):
+            loss_perturbada.backward()
+            # Única sincronización CPU-GPU del paso: si alguna de las dos losses no es finita, no se da el paso.
+            if not bool(torch.isfinite(loss) & torch.isfinite(loss_perturbada)):
                 sam.deshacer()
                 self._loss_no_finita()
                 t_ultimo = time.time()
                 continue
-            loss_perturbada.backward()
             sam.segundo_paso()
             self.estado["losses_no_finitas"] = 0
             if isinstance(self.scheduler, torch.optim.lr_scheduler.LambdaLR):
                 self.scheduler.step()
                 self.estado["paso_en_ciclo"] = self.estado.get("paso_en_ciclo", 0) + 1
             n = len(ids)
-            pred = logits.detach().argmax(dim=1)
-            en_curso["suma_loss"] += float(loss.detach()) * n
-            en_curso["aciertos"] += int((pred == celdas).sum())
+            # Métricas acumuladas en la GPU; se pasan a la CPU solo al loguear, guardar o cerrar la ronda.
+            acierto = logits.detach().argmax(dim=1) == celdas
+            grupos = self.grupo_celda_t[celdas]
+            self._acum["suma_loss"] += loss.detach() * n
+            self._acum["aciertos"] += acierto.sum()
+            self._acum["aciertos_grupo"] += torch.bincount(grupos[acierto], minlength=3)
+            self._acum["n_grupo"] += torch.bincount(grupos, minlength=3)
             en_curso["n"] += n
-            grupos = self.grupo_celda[celdas.cpu().numpy()]
-            for g in range(3):
-                en_curso["aciertos_grupo"][g] += int(((pred == celdas).cpu().numpy() & (grupos == g)).sum())
-                en_curso["n_grupo"][g] += int((grupos == g).sum())
             imgs_ventana += n
             if self.estado["paso"] % cfg.pasos_log == 0:
+                self._volcar_acumuladores()
                 transcurrido = time.time() - inicio
                 self._log({"tipo": "paso", "paso": self.estado["paso"], "ronda": etiqueta,
                            "loss": en_curso["suma_loss"] / max(en_curso["n"], 1),
@@ -506,6 +528,7 @@ class Corrida:
             self.estado["segundos"] += time.time() - t_ultimo
             self._controlar_corte()
             t_ultimo = time.time()
+        self._volcar_acumuladores()
         resultado = {"loss_train": en_curso["suma_loss"] / max(en_curso["n"], 1),
                      "top1_train": en_curso["aciertos"] / max(en_curso["n"], 1),
                      **{f"top1_train_celdas_{nombre}": en_curso["aciertos_grupo"][g] / max(en_curso["n_grupo"][g], 1)
@@ -513,6 +536,23 @@ class Corrida:
                      "muestras": en_curso["n"], "minutos": (time.time() - inicio) / 60}
         self.estado["ronda_en_curso"] = None
         return resultado
+
+    def _acumuladores_vacios(self) -> dict:
+        enteros = lambda forma: torch.zeros(forma, dtype=torch.int64, device=self.device)  # noqa: E731
+        return {"suma_loss": torch.zeros((), dtype=torch.float64, device=self.device),
+                "aciertos": enteros(()), "aciertos_grupo": enteros(3), "n_grupo": enteros(3)}
+
+    def _volcar_acumuladores(self):
+        """Pasa las métricas acumuladas en la GPU al estado (números de Python, guardables en el checkpoint)."""
+        en_curso, acum = self.estado.get("ronda_en_curso"), getattr(self, "_acum", None)
+        if en_curso is None or acum is None:
+            return
+        en_curso["suma_loss"] += float(acum["suma_loss"])
+        en_curso["aciertos"] += int(acum["aciertos"])
+        for g in range(3):
+            en_curso["aciertos_grupo"][g] += int(acum["aciertos_grupo"][g])
+            en_curso["n_grupo"][g] += int(acum["n_grupo"][g])
+        self._acum = self._acumuladores_vacios()
 
     def _loss_no_finita(self):
         self.optimizador.zero_grad(set_to_none=True)
@@ -528,14 +568,14 @@ class Corrida:
         t = self.tablas[nombre_tabla]
         ids = np.arange(len(t))
         flujo = FlujoMuestras(tareas_por_archivo(t.archivo, t.fila, ids), self.lector_eval, self.transform_val,
-                              tamano=self.cfg.tamano_imagen)
+                              tamano=self.cfg.tamano_imagen, uint8=self.rapido)
         loader = DataLoader(flujo, batch_size=64, num_workers=min(self.cfg.num_workers, len(set(t.archivo))),
                             pin_memory=self.device.type == "cuda")
         modelo = modelo or self.modelo
         modelo.eval()
         salida = np.full((len(t), self.num_clases), np.nan, dtype=np.float32)
         for imagenes, i, ok in loader:
-            salida[i.numpy()] = modelo(imagenes.to(self.device, non_blocking=True)).float().cpu().numpy()
+            salida[i.numpy()] = modelo(self._preparar(imagenes)).float().cpu().numpy()
             if not ok.all():
                 self._log({"tipo": "imagenes_fallidas_eval", "tabla": nombre_tabla, "cantidad": int((~ok).sum())})
         if np.isnan(salida).any():
@@ -645,7 +685,7 @@ class Corrida:
         tablas = ["val"] + (["val_global"] if "val_global" in self.tablas else [])
         resumen = []
         for ruta in modelos:
-            m = construir_modelo(self.num_clases, self.cfg.dropout, preentrenado=False).to(self.device)
+            m = self._a_dispositivo(construir_modelo(self.num_clases, self.cfg.dropout, preentrenado=False))
             m.load_state_dict(torch.load(ruta, map_location="cpu", weights_only=False)["modelo"])
             for tabla in tablas:
                 destino = carpeta / f"{ruta.stem}__{tabla}.npy"
