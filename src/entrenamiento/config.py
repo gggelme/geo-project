@@ -12,6 +12,10 @@ CAMPOS_SIN_HASH = {"carpeta_corrida", "num_workers", "minutos_checkpoint", "max_
                    "borrar_shards_hf", "val_global", "manifest", "splits", "prototipos",
                    "optimizaciones_velocidad", "channels_last"}
 
+# Campos agregados después de la corrida de 2M: en su valor por defecto (el de esa corrida) no entran en el hash,
+# así las corridas anteriores conservan su huella y se pueden seguir analizando o retomando.
+CAMPOS_SIN_HASH_POR_DEFECTO = {"tarea", "loss", "augmentation", "conteo_paises", "min_filas_pais"}
+
 
 @dataclass
 class Config:
@@ -33,6 +37,14 @@ class Config:
     val_global: str | None = "datasets/samples/data/validation/validation.parquet"  # Validación de los 20k.
     limite_val: int | None = None  # Solo pruebas rápidas: evaluar con los primeros N panoramas de cada validación.
 
+    # Qué se predice. "celdas": las K celdas de `prototipos`. "paises": los países con al menos `min_filas_pais`
+    # filas en `conteo_paises` (el mismo criterio que el clasificador por país de 20k: 71 países); el train se
+    # restringe a esos países, las rondas se balancean por país y las imágenes de validación de otros países
+    # cuentan como error. Para medir km, cada país se representa con su medoide (ver clases_y_tablas).
+    tarea: str = "celdas"
+    conteo_paises: str = "src/notebooks/preprocessing/assets/countries_count.json"
+    min_filas_pais: int = 1000
+
     # Muestreo (ver sampler.py).
     tamano_ronda: int = 40_000
     # Tope opcional de pasadas por panorama en toda la corrida. None = sin tope: el único límite es una aparición
@@ -41,11 +53,13 @@ class Config:
     buffer_mezcla: int = 4_000  # Imágenes (bytes JPEG) en el shuffle buffer, sumando todos los workers.
 
     # Modelo y optimización (receta de S42 + focal haversine).
+    loss: str = "haversine"  # "haversine": CE contra softmax(-d/τ) (focal si gamma_focal > 0). "ce": CE simple.
+    augmentation: bool = True  # False: train con las mismas transformaciones que validación.
     tamano_imagen: int = 224
     dropout: float = 0.3
     tau_km: float = 300.0
     gamma_focal: float = 2.0
-    rho_sam: float = 0.05
+    rho_sam: float = 0.05  # 0 = sin SAM (un solo forward/backward por paso).
     lr_cabeza: float = 1e-3
     lr_backbone: float = 1e-4
     weight_decay: float = 1e-2
@@ -57,7 +71,7 @@ class Config:
     max_rondas_base: int = 200
 
     # Snapshots: variantes que arrancan todas del mismo mejor checkpoint. fraccion = largo de cada ciclo como
-    # fracción de las rondas que tardó el modelo base en llegar a su mejor ronda.
+    # fracción de las rondas que tardó el modelo base en llegar a su mejor ronda. Lista vacía = sin snapshots.
     variantes_ciclos: list = field(default_factory=lambda: [
         {"nombre": "corto", "ciclos": 4, "fraccion": 0.15},
         {"nombre": "largo", "ciclos": 3, "fraccion": 0.40},
@@ -85,9 +99,15 @@ class Config:
 
     def __post_init__(self):
         # Validar al cargar: un error acá recién explotaría al terminar la fase base, horas después.
+        if self.tarea not in ("celdas", "paises"):
+            raise ValueError(f"tarea debe ser 'celdas' o 'paises', no {self.tarea!r}")
+        if self.loss not in ("haversine", "ce"):
+            raise ValueError(f"loss debe ser 'haversine' o 'ce', no {self.loss!r}")
+        if self.rho_sam < 0:
+            raise ValueError(f"rho_sam debe ser >= 0, no {self.rho_sam}")
         v = self.variantes_ciclos
-        if not isinstance(v, list) or not v:
-            raise ValueError(f"variantes_ciclos debe ser una lista no vacía, no {v!r}")
+        if not isinstance(v, list):
+            raise ValueError(f"variantes_ciclos debe ser una lista (vacía = sin snapshots), no {v!r}")
         nombres = set()
         for var in v:
             if (not isinstance(var, dict) or set(var) != {"nombre", "ciclos", "fraccion"}
@@ -107,6 +127,8 @@ class Config:
         siga en la fase base y se fija al empezar los ciclos (lo controla Corrida). legado=True reproduce el hash
         anterior a ese cambio, para retomar corridas empezadas antes."""
         excluidos = CAMPOS_SIN_HASH if legado else CAMPOS_SIN_HASH | {"variantes_ciclos"}
+        por_defecto = {f.name: f.default for f in fields(self) if f.name in CAMPOS_SIN_HASH_POR_DEFECTO}
+        excluidos = excluidos | {k for k, d in por_defecto.items() if getattr(self, k) == d}
         relevantes = {k: v for k, v in self.a_dict().items() if k not in excluidos}
         return hashlib.sha256(json.dumps(relevantes, sort_keys=True, default=str).encode()).hexdigest()[:16]
 

@@ -1,7 +1,8 @@
 """Loop de entrenamiento por rondas, con checkpoints y retomado automático.
 
 Fases (el estado se guarda en el checkpoint y al relanzar se sigue desde donde quedó):
-1. base: rondas hasta early stopping (CE haversine de validación), con ReduceLROnPlateau. Las primeras
+1. base: rondas hasta early stopping (CE haversine de validación; CE simple con loss="ce"), con
+   ReduceLROnPlateau. Las primeras
    `rondas_cabeza` rondas entrenan solo la capa final (backbone congelado y BatchNorm en eval).
 2. ciclos: por cada variante de `variantes_ciclos`, desde el MISMO mejor checkpoint de la fase base, ciclos de
    LR coseno con reinicio; al final de cada ciclo se guarda un snapshot. Las rondas siguen pidiéndose al mismo
@@ -16,6 +17,7 @@ interrumpir (Ctrl+C / SIGTERM) y al llegar a `max_horas`.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import math
 import os
@@ -31,6 +33,7 @@ import numpy as np
 import pandas as pd
 import pyarrow.parquet as pq
 import torch
+import torch.nn.functional as F
 from torch import nn
 from torch.utils.data import DataLoader
 from torchvision import models
@@ -143,6 +146,8 @@ def softmax_np(z):
 
 
 def metricas(logits: np.ndarray, celda: np.ndarray, dist: np.ndarray, dist_proto: np.ndarray, tau: float) -> dict:
+    """celda = clase verdadera; -1 si no es una de las clases del modelo (países fuera de los elegidos): cuenta
+    como error en top1/top5 y queda fuera de la CE. Los km se miden siempre contra la ubicación real."""
     p = softmax_np(logits.astype(np.float64))
     pred = p.argmax(axis=1)
     pred_mbr = (p @ dist_proto).argmin(axis=1)
@@ -153,7 +158,9 @@ def metricas(logits: np.ndarray, celda: np.ndarray, dist: np.ndarray, dist_proto
     bins = np.clip(np.digitize(conf, np.linspace(0, 1, 11)[1:-1]), 0, 9)
     ece = sum((bins == b).mean() * abs(acierto[bins == b].mean() - conf[bins == b].mean())
               for b in range(10) if (bins == b).any())
-    return {"ce_haversine": float(-(q * log_p).sum(axis=1).mean()), "ce": float(-log_p[idx, celda].mean()),
+    valida = celda >= 0
+    return {"ce_haversine": float(-(q * log_p).sum(axis=1).mean()),
+            "ce": float(-log_p[idx[valida], celda[valida]].mean()),
             "top1": float(acierto.mean()), "top5": float((np.argsort(-p, axis=1)[:, :5] == celda[:, None]).any(1).mean()),
             "km_mediana": float(np.median(dist[idx, pred])), "km_media": float(dist[idx, pred].mean()),
             "km_mediana_mbr": float(np.median(dist[idx, pred_mbr])), "ece": float(ece)}
@@ -161,14 +168,15 @@ def metricas(logits: np.ndarray, celda: np.ndarray, dist: np.ndarray, dist_proto
 
 # ------------------------------------------------------------------ tablas de datos
 class Tabla:
-    """Filas de un conjunto: archivo, fila, coordenadas, celda y panorama."""
+    """Filas de un conjunto: archivo, fila, coordenadas, clase (celda o país; -1 = fuera de las clases) y panorama.
+    El atributo se sigue llamando `celda` porque así lo usan las métricas y los scripts de análisis."""
 
     def __init__(self, df: pd.DataFrame):
         self.archivo = df["archivo"].to_numpy().astype(str)
         self.fila = df["fila"].to_numpy(np.int64)
         self.lat = df["latitude"].to_numpy(np.float64)
         self.lon = df["longitude"].to_numpy(np.float64)
-        self.celda = df["ind_cluster"].to_numpy(np.int64)
+        self.celda = df["clase"].to_numpy(np.int64)
         self.panoid = df["panoid"].to_numpy().astype(str)
 
     def __len__(self):
@@ -182,16 +190,33 @@ def rango_shards(texto: str | None, numeros: pd.Series) -> pd.Series:
     return (numeros >= int(a)) & (numeros <= int(b or a))
 
 
-def cargar_tablas(cfg: Config, prototipos: np.ndarray) -> dict[str, Tabla]:
-    splits = pq.read_table(resolver(cfg.splits), columns=["split", "archivo", "fila", "panoid", "ind_cluster"]).to_pandas()
+def cargar_tablas(cfg: Config, prototipos: np.ndarray | None, paises: list[str] | None = None) -> dict[str, Tabla]:
+    """Con `paises` (tarea paises) la clase es el índice del país en esa lista y el train se restringe a ellos;
+    si no, la clase es la celda (ind_cluster) y `prototipos` sirve para asignar celda a la validación global."""
+    splits = pq.read_table(resolver(cfg.splits), columns=["split", "archivo", "fila", "panoid", "ind_cluster",
+                                                         "country_code"]).to_pandas()
     coords = pq.read_table(resolver(cfg.manifest), columns=["archivo", "fila", "latitude", "longitude"]).to_pandas()
     df = splits.merge(coords, on=["archivo", "fila"], how="left", validate="one_to_one")
     if df[["latitude", "longitude"]].isna().any().any():
         raise ValueError("Filas de splits sin coordenadas en el manifest.")
+    indice_pais = {p: i for i, p in enumerate(paises or [])}
+
+    def con_clase(d: pd.DataFrame) -> pd.DataFrame:
+        d = d.copy()
+        if paises is None:
+            d["clase"] = d["ind_cluster"]
+        else:
+            codigos = d["country_code"].astype(str).str.strip().str.upper()
+            d["clase"] = codigos.map(indice_pais).fillna(-1).astype(int)
+        return d
+
+    df = con_clase(df)
     tablas = {}
     tr = df[df["split"] == "train"]
     numeros = tr["archivo"].str.extract(r"train-(\d+)-")[0].astype(int)
     tr = tr[rango_shards(cfg.shards_train, numeros)]
+    if paises is not None:
+        tr = tr[tr["clase"] >= 0]
     tablas["train"] = Tabla(tr.sort_values(["panoid", "archivo", "fila"]).reset_index(drop=True))
     va = df[df["split"] == "val"].sort_values(["archivo", "fila"]).reset_index(drop=True)
     if cfg.limite_val:  # Solo para pruebas rápidas: los primeros N panoramas.
@@ -200,14 +225,57 @@ def cargar_tablas(cfg: Config, prototipos: np.ndarray) -> dict[str, Tabla]:
     tablas["val_1vista"] = Tabla(va.drop_duplicates("panoid", keep="first").reset_index(drop=True))
     if cfg.val_global:
         ruta = resolver(cfg.val_global)
-        vg = pq.read_table(ruta, columns=["panoid", "latitude", "longitude"]).to_pandas()
+        vg = pq.read_table(ruta, columns=["panoid", "latitude", "longitude", "country_code"]).to_pandas()
         vg["archivo"], vg["fila"] = str(ruta), np.arange(len(vg))
         if cfg.limite_val:
             vg = vg[vg["panoid"].isin(vg["panoid"].drop_duplicates().head(cfg.limite_val))]
-        vg["ind_cluster"] = (to_xyz(vg["latitude"].to_numpy(), vg["longitude"].to_numpy())
-                             @ to_xyz(prototipos[:, 0], prototipos[:, 1]).T).argmax(axis=1)
-        tablas["val_global"] = Tabla(vg)
+        if paises is None:
+            vg["ind_cluster"] = (to_xyz(vg["latitude"].to_numpy(), vg["longitude"].to_numpy())
+                                 @ to_xyz(prototipos[:, 0], prototipos[:, 1]).T).argmax(axis=1)
+        tablas["val_global"] = Tabla(con_clase(vg))
     return tablas
+
+
+def paises_elegidos(cfg: Config) -> list[str]:
+    """Países con al menos `min_filas_pais` filas en el conteo del dataset (criterio del clasificador de 20k)."""
+    conteo = json.loads(resolver(cfg.conteo_paises).read_text(encoding="utf-8"))
+    return sorted(str(p).strip().upper() for p, n in conteo.items() if int(n) >= cfg.min_filas_pais)
+
+
+def medoides(tabla: Tabla, num_clases: int, semilla: int, maximo: int = 3000) -> np.ndarray:
+    """Por clase, la ubicación de train (un punto por panorama) con menor distancia media al resto de la clase:
+    el punto fijo que minimiza el error medio en km si se predice esa clase. Clases grandes: sobre una muestra."""
+    _, primera = np.unique(tabla.panoid, return_index=True)
+    lat, lon, clase = tabla.lat[primera], tabla.lon[primera], tabla.celda[primera]
+    rng = np.random.default_rng(semilla)
+    salida = np.zeros((num_clases, 2))
+    for c in range(num_clases):
+        idx = np.flatnonzero(clase == c)
+        if len(idx) == 0:
+            raise ValueError(f"La clase {c} no tiene ejemplos en train.")
+        if len(idx) > maximo:
+            idx = rng.choice(idx, maximo, replace=False)
+        d = haversine_np(lat[idx, None], lon[idx, None], lat[None, idx], lon[None, idx])
+        mejor = idx[d.mean(axis=1).argmin()]
+        salida[c] = lat[mejor], lon[mejor]
+    return salida
+
+
+def clases_y_tablas(cfg: Config) -> tuple[np.ndarray, dict[str, Tabla], list[str]]:
+    """(punto de cada clase [lat, lon], tablas, nombre de cada clase) según cfg.tarea."""
+    if cfg.tarea == "paises":
+        paises = paises_elegidos(cfg)
+        tablas = cargar_tablas(cfg, None, paises)
+        return medoides(tablas["train"], len(paises), cfg.semilla), tablas, paises
+    ruta_proto = resolver(cfg.prototipos)
+    # El hash no depende de los fines de línea: git deja el CSV con CRLF en Windows y con LF en Linux (Colab).
+    lf = ruta_proto.read_bytes().replace(b"\r\n", b"\n")
+    hashes = {hashlib.sha256(x).hexdigest() for x in (lf, lf.replace(b"\n", b"\r\n"))}
+    if cfg.sha256_prototipos not in hashes:
+        raise ValueError(f"{ruta_proto} no coincide con los prototipos del manifest.")
+    proto = pd.read_csv(ruta_proto).sort_values("ind_cluster")
+    prototipos = proto[["lat", "lon"]].to_numpy(np.float64)
+    return prototipos, cargar_tablas(cfg, prototipos), [str(c) for c in proto["ind_cluster"]]
 
 
 # ------------------------------------------------------------------ checkpoints
@@ -245,22 +313,14 @@ class Corrida:
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self._registrar_config()
 
-        ruta_proto = resolver(cfg.prototipos)
-        import hashlib
-
-        # El hash no depende de los fines de línea: git deja el CSV con CRLF en Windows y con LF en Linux (Colab).
-        lf = ruta_proto.read_bytes().replace(b"\r\n", b"\n")
-        hashes = {hashlib.sha256(x).hexdigest() for x in (lf, lf.replace(b"\n", b"\r\n"))}
-        if cfg.sha256_prototipos not in hashes:
-            raise ValueError(f"{ruta_proto} no coincide con los prototipos del manifest.")
-        proto = pd.read_csv(ruta_proto).sort_values("ind_cluster")
-        self.prototipos = proto[["lat", "lon"]].to_numpy(np.float64)
+        self.prototipos, self.tablas, self.nombres_clases = clases_y_tablas(cfg)
         self.num_clases = len(self.prototipos)
+        pd.DataFrame({"clase": range(self.num_clases), "nombre": self.nombres_clases, "lat": self.prototipos[:, 0],
+                      "lon": self.prototipos[:, 1]}).to_csv(self.carpeta / "clases.csv", index=False)
         self.dist_proto = haversine_np(self.prototipos[:, None, 0], self.prototipos[:, None, 1],
                                        self.prototipos[None, :, 0], self.prototipos[None, :, 1])
         self.proto_t = torch.tensor(self.prototipos, dtype=torch.float32, device=self.device)
 
-        self.tablas = cargar_tablas(cfg, self.prototipos)
         self.lector = Lector(cfg.fuente, resolver(cfg.datos_local), cfg.hf_repo, cfg.hf_revision, cfg.hf_subcarpeta,
                              cfg.hf_cache, cfg.borrar_shards_hf)
         # Los parquets de validación se usan en cada ronda: con fuente HF se bajan una vez y no se borran.
@@ -272,14 +332,16 @@ class Corrida:
             torch.backends.cudnn.benchmark = True  # Tamaño de entrada fijo: elige el algoritmo más rápido.
         self.media_gpu = torch.tensor(MEDIA_IMAGENET, device=self.device).view(1, 3, 1, 1) * 255
         self.std_gpu = torch.tensor(STD_IMAGENET, device=self.device).view(1, 3, 1, 1) * 255
-        self.transform_train, self.transform_val = transformaciones(cfg.tamano_imagen, uint8=self.rapido)
+        self.transform_train, self.transform_val = transformaciones(cfg.tamano_imagen, uint8=self.rapido,
+                                                                    augmentation=cfg.augmentation)
         tr = self.tablas["train"]
         _, self.pano_idx = np.unique(tr.panoid, return_inverse=True)
         n_panos = self.pano_idx.max() + 1
         self.inicio_filas = np.searchsorted(self.pano_idx, np.arange(n_panos))
         self.n_filas = np.bincount(self.pano_idx)
         self.celda_pano = tr.celda[self.inicio_filas]
-        # Tamaño de cada celda en train (imágenes), para monitorear sobreajuste en celdas chicas.
+        # Tamaño de cada clase en train (imágenes), para monitorear sobreajuste en las chicas (con tarea paises,
+        # "celdas_chicas" son los países chicos).
         imgs_celda = np.bincount(tr.celda, minlength=self.num_clases)
         self.grupo_celda = np.digitize(imgs_celda, np.quantile(imgs_celda, [1 / 3, 2 / 3]))  # 0 chica, 2 grande
         self.grupo_celda_t = torch.as_tensor(self.grupo_celda, device=self.device)
@@ -489,21 +551,30 @@ class Corrida:
             celdas = self.celda_t[ids_gpu]
             self.estado["paso"] += 1
             logits = self.modelo(imagenes)
-            loss = loss_haversine(logits, dist, cfg.tau_km, cfg.gamma_focal)
+            loss = self._loss(logits, dist, celdas)
             if cfg.prueba_nan_en_paso and self.estado["paso"] == cfg.prueba_nan_en_paso:
                 loss = loss * float("nan")
             loss.backward()
-            sam.primer_paso()  # Con gradiente no finito no perturba (ver SAM).
-            with bn_sin_actualizar(self.modelo):
-                loss_perturbada = loss_haversine(self.modelo(imagenes), dist, cfg.tau_km, cfg.gamma_focal)
-            loss_perturbada.backward()
-            # Única sincronización CPU-GPU del paso: si alguna de las dos losses no es finita, no se da el paso.
-            if not bool(torch.isfinite(loss) & torch.isfinite(loss_perturbada)):
-                sam.deshacer()
+            if cfg.rho_sam > 0:
+                sam.primer_paso()  # Con gradiente no finito no perturba (ver SAM).
+                with bn_sin_actualizar(self.modelo):
+                    loss_perturbada = self._loss(self.modelo(imagenes), dist, celdas)
+                loss_perturbada.backward()
+                finitas = torch.isfinite(loss) & torch.isfinite(loss_perturbada)
+            else:
+                finitas = torch.isfinite(loss)
+            # Única sincronización CPU-GPU del paso: si alguna loss no es finita, no se da el paso.
+            if not bool(finitas):
+                if cfg.rho_sam > 0:
+                    sam.deshacer()
                 self._loss_no_finita()
                 t_ultimo = time.time()
                 continue
-            sam.segundo_paso()
+            if cfg.rho_sam > 0:
+                sam.segundo_paso()
+            else:
+                self.optimizador.step()
+                self.optimizador.zero_grad(set_to_none=True)
             self.estado["losses_no_finitas"] = 0
             if isinstance(self.scheduler, torch.optim.lr_scheduler.LambdaLR):
                 self.scheduler.step()
@@ -540,6 +611,11 @@ class Corrida:
                      "muestras": en_curso["n"], "minutos": (time.time() - inicio) / 60}
         self.estado["ronda_en_curso"] = None
         return resultado
+
+    def _loss(self, logits, dist, clases):
+        if self.cfg.loss == "ce":
+            return F.cross_entropy(logits.float(), clases)
+        return loss_haversine(logits, dist, self.cfg.tau_km, self.cfg.gamma_focal)
 
     def _acumuladores_vacios(self) -> dict:
         enteros = lambda forma: torch.zeros(forma, dtype=torch.int64, device=self.device)  # noqa: E731
@@ -593,7 +669,7 @@ class Corrida:
         m = metricas(z, t.celda, dist, self.dist_proto, self.cfg.tau_km)
         acierto = z.argmax(axis=1) == t.celda
         for g, nombre in enumerate(("chicas", "medianas", "grandes")):
-            sel = self.grupo_celda[t.celda] == g
+            sel = (t.celda >= 0) & (self.grupo_celda[np.maximum(t.celda, 0)] == g)
             m[f"top1_celdas_{nombre}"] = float(acierto[sel].mean()) if sel.any() else float("nan")
         return m, z
 
@@ -623,7 +699,7 @@ class Corrida:
                 fila = None
             else:
                 fila = self.evaluar_ronda(f"base_{numero}", resultado)
-                loss_val = fila["val_ce_haversine"]
+                loss_val = fila["val_ce" if cfg.loss == "ce" else "val_ce_haversine"]
                 if not math.isfinite(loss_val):
                     raise RuntimeError("Loss de validación no finita.")
                 if loss_val < e["mejor_loss"]:

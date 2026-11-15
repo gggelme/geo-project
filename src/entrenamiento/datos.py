@@ -28,7 +28,8 @@ MEDIA_IMAGENET = models.ResNet18_Weights.IMAGENET1K_V1.transforms().mean
 STD_IMAGENET = models.ResNet18_Weights.IMAGENET1K_V1.transforms().std
 
 
-def transformaciones(tamano: int, uint8: bool = False) -> tuple[transforms.Compose, transforms.Compose]:
+def transformaciones(tamano: int, uint8: bool = False,
+                     augmentation: bool = True) -> tuple[transforms.Compose, transforms.Compose]:
     # Las mismas que en los notebooks de 20k (deben coincidir con config de S42). Con uint8=True terminan en un
     # tensor uint8 (4 veces menos bytes entre procesos y hacia la GPU) y ToTensor + Normalize se hacen en la GPU.
     final = [transforms.PILToTensor()] if uint8 else [transforms.ToTensor(),
@@ -39,7 +40,7 @@ def transformaciones(tamano: int, uint8: bool = False) -> tuple[transforms.Compo
         *final,
     ])
     val = transforms.Compose([transforms.Resize(tamano), transforms.CenterCrop(tamano), *final])
-    return train, val
+    return (train if augmentation else val), val
 
 
 class Lector:
