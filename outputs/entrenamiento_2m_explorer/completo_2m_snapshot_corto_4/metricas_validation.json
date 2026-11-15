@@ -1,0 +1,9 @@
+{
+  "n_validation": null,
+  "accuracy_top1": 0.5708927231807952,
+  "accuracy_top5": 0.9356714178544636,
+  "error_mediano_km": 485.6134633540413,
+  "error_medio_km": 1299.042125946795,
+  "error_mediano_km_mbr": 512.7843074956027,
+  "loss_haversine_validation": 1.5859487982803195
+}
