@@ -29,6 +29,10 @@ def main() -> None:
     carpeta = resolver(args.corrida)
     datos = json.loads((carpeta / "config.json").read_text(encoding="utf-8"))
     datos.pop("huella", None)
+    # Corridas de Colab: los insumos quedaron con rutas de la máquina (/content/...); se usan los locales por defecto.
+    for campo in ("manifest", "splits", "val_global"):
+        if datos.get(campo) and not resolver(datos[campo]).exists():
+            datos.pop(campo)
     cfg = Config(**datos)
     proto = pd.read_csv(resolver(cfg.prototipos)).sort_values("ind_cluster")[["lat", "lon"]].to_numpy(np.float64)
     dist_proto = haversine_np(proto[:, None, 0], proto[:, None, 1], proto[None, :, 0], proto[None, :, 1])
@@ -37,9 +41,16 @@ def main() -> None:
     modelos = sorted({p.name.split("__")[0] for p in (carpeta / "logits").glob("*.npy")})
     cortos = [m for m in modelos if m.startswith("snapshot_corto")]
     largos = [m for m in modelos if m.startswith("snapshot_largo")]
-    ensambles = {"base": ["mejor"], "corto (4)": cortos, "largo (3)": largos, "corto+largo (7)": cortos + largos,
-                 "base+corto+largo (8)": ["mejor"] + cortos + largos,
-                 "ultimo corto + ultimo largo (2)": [cortos[-1], largos[-1]]}
+    ensambles = {"base": ["mejor"]}
+    for nombre, grupo in (("corto", cortos), ("largo", largos)):
+        if grupo:
+            ensambles[f"ultimo {nombre} (1)"] = grupo[-1:]
+            ensambles[f"{nombre} ({len(grupo)})"] = grupo
+            ensambles[f"base+{nombre} ({len(grupo) + 1})"] = ["mejor"] + grupo
+    if cortos and largos:  # Solo si la corrida tuvo las dos variantes.
+        ensambles[f"corto+largo ({len(cortos) + len(largos)})"] = cortos + largos
+        ensambles[f"base+corto+largo ({len(cortos) + len(largos) + 1})"] = ["mejor"] + cortos + largos
+        ensambles["ultimo corto + ultimo largo (2)"] = [cortos[-1], largos[-1]]
 
     filas, boot = [], []
     rng = np.random.default_rng(0)

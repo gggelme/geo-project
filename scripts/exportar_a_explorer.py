@@ -44,6 +44,10 @@ def main() -> None:
     corrida = resolver(args.corrida)
     raiz = resolver(".")
     cfg = json.loads((corrida / "config.json").read_text(encoding="utf-8"))
+    # Corridas de Colab: la validación quedó con la ruta de la máquina (/content/...); se usa la local por defecto.
+    if cfg.get("val_global") and not resolver(cfg["val_global"]).exists():
+        from src.entrenamiento.config import Config
+        cfg["val_global"] = Config.__dataclass_fields__["val_global"].default
     ruta_pt = corrida / "mejor.pt" if args.modelo == "mejor" else corrida / "snapshots" / f"{args.modelo}.pt"
     estado = torch.load(ruta_pt, map_location="cpu", weights_only=False)["modelo"]
     num_clases = int(estado["fc.1.weight"].shape[0])
