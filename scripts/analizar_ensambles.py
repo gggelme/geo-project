@@ -17,7 +17,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from src.entrenamiento.config import Config  # noqa: E402
-from src.entrenamiento.entrenamiento import cargar_tablas, haversine_np, metricas, resolver, softmax_np  # noqa: E402
+from src.entrenamiento.entrenamiento import clases_y_tablas, haversine_np, metricas, resolver, softmax_np  # noqa: E402
 
 N_BOOTSTRAP = 1000
 
@@ -34,9 +34,8 @@ def main() -> None:
         if datos.get(campo) and not resolver(datos[campo]).exists():
             datos.pop(campo)
     cfg = Config(**datos)
-    proto = pd.read_csv(resolver(cfg.prototipos)).sort_values("ind_cluster")[["lat", "lon"]].to_numpy(np.float64)
+    proto, tablas, _ = clases_y_tablas(cfg)  # Celdas o países, igual que en el entrenamiento.
     dist_proto = haversine_np(proto[:, None, 0], proto[:, None, 1], proto[None, :, 0], proto[None, :, 1])
-    tablas = cargar_tablas(cfg, proto)
 
     modelos = sorted({p.name.split("__")[0] for p in (carpeta / "logits").glob("*.npy")})
     cortos = [m for m in modelos if m.startswith("snapshot_corto")]
