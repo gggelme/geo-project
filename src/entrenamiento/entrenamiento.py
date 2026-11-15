@@ -248,7 +248,10 @@ class Corrida:
         ruta_proto = resolver(cfg.prototipos)
         import hashlib
 
-        if hashlib.sha256(ruta_proto.read_bytes()).hexdigest() != cfg.sha256_prototipos:
+        # El hash no depende de los fines de línea: git deja el CSV con CRLF en Windows y con LF en Linux (Colab).
+        lf = ruta_proto.read_bytes().replace(b"\r\n", b"\n")
+        hashes = {hashlib.sha256(x).hexdigest() for x in (lf, lf.replace(b"\n", b"\r\n"))}
+        if cfg.sha256_prototipos not in hashes:
             raise ValueError(f"{ruta_proto} no coincide con los prototipos del manifest.")
         proto = pd.read_csv(ruta_proto).sort_values("ind_cluster")
         self.prototipos = proto[["lat", "lon"]].to_numpy(np.float64)
