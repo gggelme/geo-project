@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GeoDuelo Explorador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body class="explorador">
+  <header class="hud">
+    <div class="hud-izq">
+      <div class="logo chico"><span class="logo-icono">◉</span> Geo<b>Duelo</b></div>
+      <span class="chip">Explorador</span>
+    </div>
+    <div class="hud-info" id="info-posicion">Elegí un lugar en el globo</div>
+    <a href="/" class="btn-fantasma">← Volver al duelo</a>
+  </header>
+
+  <div class="exp-layout">
+    <!-- Street View -->
+    <section class="exp-sv">
+      <div id="streetview" class="streetview"></div>
+      <div id="sv-vacio" class="sv-vacio">
+        <div class="sv-vacio-icono">🧭</div>
+        <h2>Elegí un lugar en el globo</h2>
+        <p>Hacé clic en cualquier parte del mundo y te llevo al Street View más cercano.<br>
+          Caminá, mirá alrededor y, cuando quieras, mostrale ese punto al modelo.</p>
+        <button id="btn-azar-grande" class="btn-principal">🎲 Llevame a un lugar al azar</button>
+      </div>
+      <div id="sv-config" class="sv-vacio oculto">
+        <div class="sv-vacio-icono">🔑</div>
+        <h2>Falta la API key de Google</h2>
+        <p>El explorador usa Google Street View (la misma fuente que el dataset). Para activarlo:</p>
+        <ol class="pasos">
+          <li>En <a href="https://console.cloud.google.com/google/maps-apis" target="_blank" rel="noopener">Google Cloud Console</a>,
+            creá un proyecto y habilitá <b>Maps JavaScript API</b> y <b>Street View Static API</b>.</li>
+          <li>Creá una API key (conviene restringirla a esas dos APIs y a <code>http://127.0.0.1:*</code>).</li>
+          <li>Agregá esta línea al <code>.env</code> de la raíz del repo:<br><code>GOOGLE_MAPS_API_KEY=tu_key</code></li>
+          <li>Reiniciá el servidor y recargá esta página.</li>
+        </ol>
+      </div>
+
+      <!-- Barra de captura -->
+      <div id="barra-captura" class="barra-captura oculto">
+        <div class="brujula" title="Hacia dónde mirás. Las marcas son las 4 vistas que va a recibir el modelo.">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="46" class="b-aro"/>
+            <g id="b-marcas"></g>
+            <text x="50" y="17" class="b-n">N</text>
+            <g id="b-aguja"><path d="M50 14 L57 50 L50 44 L43 50 Z" class="b-aguja"/></g>
+          </svg>
+        </div>
+        <div class="captura-opciones">
+          <span class="opcion-titulo">Vistas para el modelo</span>
+          <div class="segmentado chico" id="orientacion">
+            <button data-valor="norte" class="sel" title="Headings 0°, 90°, 180°, 270°, igual que el dataset">N · E · S · O (como el dataset)</button>
+            <button data-valor="mirada" title="Las 4 vistas arrancan desde hacia donde estás mirando">Desde mi mirada</button>
+          </div>
+          <span class="rumbos" id="rumbos"></span>
+        </div>
+        <button id="btn-azar" class="btn-fantasma" title="Ir a un lugar al azar">🎲</button>
+        <button id="btn-capturar" class="btn-principal">📸 Mostrarle al modelo <kbd>espacio</kbd></button>
+      </div>
+    </section>
+
+    <!-- Globo + resultado -->
+    <aside class="exp-lateral">
+      <div class="exp-globo-wrap">
+        <div id="globo" class="globo"></div>
+        <div class="exp-globo-barra">
+          <div class="segmentado chico" id="estilo-mapa">
+            <button data-valor="mapa" class="sel">Mapa</button>
+            <button data-valor="satelite">Satélite</button>
+            <button data-valor="oscuro">Oscuro</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="exp-panel" class="exp-panel">
+        <div id="exp-ayuda" class="exp-ayuda">
+          <div class="subtitulo">Cómo funciona</div>
+          <p>Cuando capturás, el servidor baja de la <b>Street View Static API</b> las 4 vistas del panorama
+            (512×512, FOV 90°, mirando al N, E, S y O, igual que en el dataset), les aplica la misma recompresión que
+            en el entrenamiento y se las pasa a la ResNet-18. La predicción es la celda con más probabilidad
+            promediando las 4 vistas.</p>
+          <p class="tenue">Tip: el globo sigue funcionando para saltar a otro lugar cuando quieras.</p>
+        </div>
+
+        <div id="exp-resultado" class="exp-resultado oculto">
+          <div class="res-titulo" id="res-titulo"></div>
+          <div class="res-lugar" id="res-lugar"></div>
+          <div class="exp-numeros">
+            <div class="duelo-col modelo">
+              <div class="duelo-quien"><i></i>Error del modelo</div>
+              <div class="duelo-puntos" id="res-km"></div>
+              <div class="duelo-km" id="res-pais-modelo"></div>
+            </div>
+            <div class="duelo-col modelo">
+              <div class="duelo-quien"><i></i>Puntaje GeoGuessr</div>
+              <div class="duelo-puntos" id="res-p-modelo">0</div>
+              <div class="barra"><div id="res-b-modelo"></div></div>
+            </div>
+          </div>
+          <div class="subtitulo">Las 4 vistas que recibió el modelo (y qué predijo con cada una)</div>
+          <div class="por-vista grande" id="res-vistas"></div>
+          <div class="metricas" id="res-metricas"></div>
+          <div class="subtitulo" id="res-top5-titulo">Top-5 celdas (promedio de las 4 vistas)</div>
+          <ol class="top5" id="res-top5"></ol>
+        </div>
+
+        <div id="exp-historial-wrap" class="oculto">
+          <div class="subtitulo">Capturas de esta sesión</div>
+          <ul class="exp-historial" id="exp-historial"></ul>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div id="visor" class="visor">
+    <button class="visor-nav izq" data-d="-1">‹</button>
+    <img id="visor-img" alt="">
+    <button class="visor-nav der" data-d="1">›</button>
+    <div class="visor-pie"><span id="visor-k"></span> · ← → para girar · Esc para cerrar</div>
+  </div>
+  <div id="toast" class="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3-array@3.2.4/dist/d3-array.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-geo@3.1.1/dist/d3-geo.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/globe.gl@2.46.2/dist/globe.gl.min.js"></script>
+  <script src="comun.js"></script>
+  <script src="explorar.js"></script>
+</body>
+</html>
