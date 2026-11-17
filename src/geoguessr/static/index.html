@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GeoDuelo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <!-- ============ Pantalla de inicio ============ -->
+  <section id="inicio" class="pantalla activa">
+    <div class="inicio-fondo" id="globo-inicio"></div>
+    <div class="inicio-tarjeta">
+      <div class="logo"><span class="logo-icono">◉</span> Geo<b>Duelo</b></div>
+      <p class="bajada">Vos contra una <b>ResNet-18</b> entrenada con 2M de imágenes de Street View.<br>
+        Mirá las 4 vistas, poné el pin en el globo y tratá de ganarle.</p>
+
+      <div class="opciones">
+        <div class="opcion">
+          <span class="opcion-titulo">Rondas</span>
+          <div class="segmentado" data-opcion="rondas">
+            <button data-valor="5" class="sel">5</button>
+            <button data-valor="10">10</button>
+            <button data-valor="0">∞</button>
+          </div>
+        </div>
+        <div class="opcion">
+          <span class="opcion-titulo">Ubicaciones</span>
+          <div class="segmentado" data-opcion="modo">
+            <button data-valor="libre" class="sel" title="Muestreo uniforme sobre el split de test">Test tal cual</button>
+            <button data-valor="paises" title="Primero un país al azar, después un panorama de ese país">Por país</button>
+          </div>
+        </div>
+        <div class="opcion">
+          <span class="opcion-titulo">Tiempo</span>
+          <div class="segmentado" data-opcion="tiempo">
+            <button data-valor="0" class="sel">Sin límite</button>
+            <button data-valor="120">2 min</button>
+            <button data-valor="60">1 min</button>
+            <button data-valor="30">30 s</button>
+          </div>
+        </div>
+      </div>
+
+      <button id="btn-empezar" class="btn-principal">Empezar partida</button>
+      <a href="explorar.html" class="btn-secundario">🧭 Modo explorador <span>caminá en Street View y probá al modelo donde quieras</span></a>
+      <div id="historial-global" class="historial-global"></div>
+    </div>
+  </section>
+
+  <!-- ============ Juego ============ -->
+  <section id="juego" class="pantalla">
+    <header class="hud">
+      <div class="logo chico"><span class="logo-icono">◉</span> Geo<b>Duelo</b></div>
+      <div class="hud-centro">
+        <div class="hud-item"><span>Ronda</span><b id="hud-ronda">1 / 5</b></div>
+        <div class="hud-item jugador"><span>Vos</span><b id="hud-jugador">0</b></div>
+        <div class="hud-item modelo"><span>Modelo</span><b id="hud-modelo">0</b></div>
+      </div>
+      <button id="btn-salir" class="btn-fantasma" title="Volver al inicio">✕ Salir</button>
+    </header>
+    <div id="barra-tiempo" class="barra-tiempo"><div></div><span id="texto-tiempo"></span></div>
+
+    <main id="vistas" class="vistas">
+      <figure class="vista" data-k="0"><img alt="Vista 1"><figcaption>1</figcaption></figure>
+      <figure class="vista" data-k="1"><img alt="Vista 2"><figcaption>2</figcaption></figure>
+      <figure class="vista" data-k="2"><img alt="Vista 3"><figcaption>3</figcaption></figure>
+      <figure class="vista" data-k="3"><img alt="Vista 4"><figcaption>4</figcaption></figure>
+      <div id="cargando" class="cargando"><div class="spinner"></div><span>Buscando un lugar…</span></div>
+    </main>
+
+    <!-- El globo vive acá; cambia de tamaño entre "mini", "grande" y "resultado" -->
+    <div id="panel-mapa" class="panel-mapa mini">
+      <div class="mapa-barra">
+        <div class="segmentado chico" id="estilo-mapa">
+          <button data-valor="mapa" class="sel">Mapa</button>
+          <button data-valor="satelite">Satélite</button>
+          <button data-valor="oscuro">Oscuro</button>
+        </div>
+        <button id="btn-fijar" class="btn-icono" title="Fijar el mapa grande">⤢</button>
+      </div>
+      <div id="globo" class="globo"></div>
+      <button id="btn-adivinar" class="btn-principal btn-adivinar" disabled>Poné el pin en el globo</button>
+    </div>
+
+    <!-- Resultado de la ronda -->
+    <aside id="resultado" class="resultado">
+      <div class="res-titulo" id="res-titulo"></div>
+      <div class="res-lugar" id="res-lugar"></div>
+
+      <div class="duelo">
+        <div class="duelo-col jugador">
+          <div class="duelo-quien"><i></i>Vos</div>
+          <div class="duelo-puntos" id="res-p-jugador">0</div>
+          <div class="barra"><div id="res-b-jugador"></div></div>
+          <div class="duelo-km" id="res-km-jugador"></div>
+          <div class="duelo-pais" id="res-pais-jugador"></div>
+        </div>
+        <div class="duelo-vs">vs</div>
+        <div class="duelo-col modelo">
+          <div class="duelo-quien"><i></i>Modelo</div>
+          <div class="duelo-puntos" id="res-p-modelo">0</div>
+          <div class="barra"><div id="res-b-modelo"></div></div>
+          <div class="duelo-km" id="res-km-modelo"></div>
+          <div class="duelo-pais" id="res-pais-modelo"></div>
+        </div>
+      </div>
+
+      <details class="detalle" open>
+        <summary>Qué pensó el modelo</summary>
+        <div class="metricas" id="res-metricas"></div>
+        <div class="subtitulo" id="res-top5-titulo">Top-5 celdas (promedio de las 4 vistas)</div>
+        <ol class="top5" id="res-top5"></ol>
+        <div class="subtitulo">Cada vista por separado</div>
+        <div class="por-vista" id="res-vistas"></div>
+      </details>
+
+      <button id="btn-siguiente" class="btn-principal">Siguiente ronda <kbd>espacio</kbd></button>
+    </aside>
+
+    <!-- Visor ampliado -->
+    <div id="visor" class="visor">
+      <button class="visor-nav izq" data-d="-1">‹</button>
+      <img id="visor-img" alt="">
+      <button class="visor-nav der" data-d="1">›</button>
+      <div class="visor-pie"><span id="visor-k"></span> · ← → para girar · Esc para cerrar</div>
+    </div>
+  </section>
+
+  <!-- ============ Fin de partida ============ -->
+  <section id="final" class="pantalla">
+    <div class="final-tarjeta">
+      <div class="final-veredicto" id="fin-veredicto"></div>
+      <div class="final-totales">
+        <div class="jugador"><span>Vos</span><b id="fin-jugador">0</b></div>
+        <div class="modelo"><span>Modelo</span><b id="fin-modelo">0</b></div>
+      </div>
+      <table class="tabla-rondas">
+        <thead><tr><th>#</th><th>Lugar</th><th>Vos</th><th></th><th>Modelo</th><th></th></tr></thead>
+        <tbody id="fin-tabla"></tbody>
+      </table>
+      <div class="final-botones">
+        <button id="btn-revancha" class="btn-principal">Revancha</button>
+        <button id="btn-inicio" class="btn-fantasma">Cambiar opciones</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3-array@3.2.4/dist/d3-array.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-geo@3.1.1/dist/d3-geo.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/globe.gl@2.46.2/dist/globe.gl.min.js"></script>
+  <script src="comun.js"></script>
+  <script src="juego.js"></script>
+</body>
+</html>
