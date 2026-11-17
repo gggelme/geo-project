@@ -22,3 +22,6 @@ outputs/**/*.pt
 *.parquet
 # Logits de la evaluación final (pesados; se regeneran desde los snapshots)
 outputs/**/logits/*.npy
+
+# Dependencias de node de la presentación
+presentacion/node_modules/

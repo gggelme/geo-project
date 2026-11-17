@@ -1,0 +1,8 @@
+{
+  "name": "presentacion-geoguessr",
+  "private": true,
+  "description": "Genera presentacion_geoguessr.pptx (node armar_pptx.js)",
+  "dependencies": {
+    "pptxgenjs": "3.12.0"
+  }
+}
